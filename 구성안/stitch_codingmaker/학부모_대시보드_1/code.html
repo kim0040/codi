@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodingMaker Academy - 학부모 대시보드</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", secondary: "#50E3C2", "background-light": "#f5f7f8", "background-dark": "#0f1923", "text-light": "#4A4A4A", "text-dark": "#E0E0E0", "subtext-light": "#9B9B9B", "subtext-dark": "#A0A0A0", "border-light": "#EAECEF", "border-dark": "#333A42", "card-light": "#FFFFFF", "card-dark": "#1A242E"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<div class="flex h-full grow flex-col">
+<header class="sticky top-0 z-10 w-full border-b border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark/80 backdrop-blur-sm">
+<div class="container mx-auto flex items-center justify-between whitespace-nowrap px-4 py-3 lg:px-6">
+<div class="flex items-center gap-4 text-text-light dark:text-text-dark">
+<div class="text-primary size-7">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_319)">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</g>
+<defs><clippath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clippath></defs>
+</svg>
+</div>
+<h2 class="text-lg font-bold tracking-[-0.015em]">CodingMaker Academy</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full text-subtext-light dark:text-subtext-dark hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_g96MFstEGpLfaFb1PkzjJf9y-7JItiN9Jj4ueh2WWg_0kvMUlewDMAoufchVE4VhNzcGbxOpaLhXswkSsvxH7Bpp1tY7H23GRsIZeI7bh-4hkiLYpidkyvvQHXf0sWmHtqA__6awXRF5aX6Be1F7kVFYE9TLxeVzbDOsht30o-BgsmhFissWh_fHw1upDm9OwjY9ZjbU6kvlT7PveG-GU8KuNyygcrunM-yJ_BheAf-8TOSKaUEVX6Q5We7lk2jEpVT3uv-mrE4");'></div>
+</div>
+</div>
+</header>
+<main class="container mx-auto w-full max-w-6xl flex-1 px-4 py-8 lg:px-6 lg:py-12">
+<div class="flex flex-col gap-8">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col gap-2">
+<p class="text-3xl font-black leading-tight tracking-[-0.033em] md:text-4xl">김코딩 학생 학습 현황</p>
+<p class="text-base font-normal text-subtext-light dark:text-subtext-dark">자녀의 출석, 수강 클래스, 커리큘럼 진행 상황을 확인하세요.</p>
+</div>
+<div class="relative">
+<button class="flex w-full items-center justify-between gap-2 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark px-4 py-2.5 text-left md:w-auto">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Student profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYCcKWd_Vk8WwdxumHNCZTDVR9T4LCj6mv_ctQQlyJR0t-w6_ddUA5eM8AiPrHt56-4pXTM0aDOkuKNV9tzEIucRD9DNVyyoabsUsSuRzv7j5dRBim9IlQNFxa4GcEcTPrWD6QnyhaxurAdjXH2NOTxvxfGrkj9YQbzjzqvY4bG1T1vxTGR0Uz-G_5tBVU2dJb5iFpqOkxo0WIeluqtttGwnB5CpaIt1figgjpcVp2RY6UiiPe4HuVKx1H_OwjVtugZvx88Ypj0yA");'></div>
+<span class="font-medium">김코딩</span>
+</div>
+<span class="material-symbols-outlined text-subtext-light dark:text-subtext-dark">unfold_more</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
+<div class="flex flex-col gap-6 lg:col-span-1">
+<h2 class="text-xl font-bold tracking-[-0.015em] lg:text-2xl">최근 출석 현황</h2>
+<div class="flex flex-col gap-6 rounded-xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+<div class="flex flex-col gap-2">
+<p class="text-base font-medium">이번 달 출석률</p>
+<div class="flex items-baseline gap-2">
+<p class="text-[40px] font-bold leading-tight tracking-tight text-secondary">95%</p>
+<p class="font-medium text-green-600 dark:text-green-400">+5%</p>
+</div>
+</div>
+<div class="relative h-4 w-full rounded-full bg-background-light dark:bg-background-dark">
+<div class="absolute left-0 top-0 h-4 rounded-full bg-secondary" style="width: 95%;"></div>
+</div>
+<div class="grid grid-cols-3 gap-4 text-center">
+<div class="flex flex-col gap-1 rounded-lg bg-background-light dark:bg-background-dark p-3">
+<p class="text-sm font-medium text-subtext-light dark:text-subtext-dark">출석</p>
+<p class="text-2xl font-bold">19회</p>
+</div>
+<div class="flex flex-col gap-1 rounded-lg bg-background-light dark:bg-background-dark p-3">
+<p class="text-sm font-medium text-subtext-light dark:text-subtext-dark">지각</p>
+<p class="text-2xl font-bold">1회</p>
+</div>
+<div class="flex flex-col gap-1 rounded-lg bg-background-light dark:bg-background-dark p-3">
+<p class="text-sm font-medium text-subtext-light dark:text-subtext-dark">결석</p>
+<p class="text-2xl font-bold">0회</p>
+</div>
+</div>
+<a class="mt-2 text-center text-sm font-semibold text-primary hover:underline" href="#">상세 출결 기록 보기</a>
+</div>
+</div>
+<div class="flex flex-col gap-6 lg:col-span-2">
+<h2 class="text-xl font-bold tracking-[-0.015em] lg:text-2xl">수강 중인 클래스</h2>
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+<div class="flex cursor-pointer flex-col gap-4 rounded-xl border-2 border-primary bg-primary/5 p-6 transition-shadow duration-200 hover:shadow-lg dark:bg-primary/10">
+<h3 class="text-lg font-bold">파이썬으로 배우는 알고리즘 기초</h3>
+<div class="flex flex-col gap-2 text-sm text-subtext-light dark:text-subtext-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">person</span>
+<span>강사: 박해커</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>다음 수업: 2024-08-05 (월) 16:00</span>
+</div>
+</div>
+</div>
+<div class="flex cursor-pointer flex-col gap-4 rounded-xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6 transition-shadow duration-200 hover:shadow-lg">
+<h3 class="text-lg font-bold">웹 개발 마스터 과정</h3>
+<div class="flex flex-col gap-2 text-sm text-subtext-light dark:text-subtext-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">person</span>
+<span>강사: 이코딩</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>다음 수업: 2024-08-07 (수) 18:00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6 pt-6">
+<h2 class="text-xl font-bold tracking-[-0.015em] lg:text-2xl">'파이썬으로 배우는 알고리즘 기초' 커리큘럼</h2>
+<div class="rounded-xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+<div class="flex flex-col gap-6">
+<div class="flex items-start gap-4">
+<div class="flex flex-col items-center">
+<div class="flex size-8 items-center justify-center rounded-full bg-secondary text-white">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div class="h-16 w-0.5 bg-border-light dark:bg-border-dark"></div>
+</div>
+<div class="flex-1 pt-1">
+<p class="font-bold">1단계: 파이썬 기초 문법</p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">변수, 자료형, 조건문, 반복문 학습</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex flex-col items-center">
+<div class="flex size-8 items-center justify-center rounded-full bg-secondary text-white">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div class="h-16 w-0.5 bg-border-light dark:bg-border-dark"></div>
+</div>
+<div class="flex-1 pt-1">
+<p class="font-bold">2단계: 자료구조의 이해</p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">리스트, 튜플, 딕셔너리 등 기본 자료구조 활용</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex flex-col items-center">
+<div class="flex size-8 items-center justify-center rounded-full bg-primary text-white ring-4 ring-primary/20">
+<span class="font-bold text-sm">3</span>
+</div>
+<div class="h-16 w-0.5 bg-border-light dark:bg-border-dark"></div>
+</div>
+<div class="flex-1 pt-1">
+<p class="font-bold">3단계: 정렬 알고리즘 <span class="ml-2 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary dark:bg-primary/20">진행 중</span></p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">버블 정렬, 선택 정렬, 삽입 정렬의 원리 및 구현</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex flex-col items-center">
+<div class="flex size-8 items-center justify-center rounded-full border-2 border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-subtext-light dark:text-subtext-dark">
+<span class="font-bold text-sm">4</span>
+</div>
+<div class="h-16 w-0.5 bg-border-light dark:bg-border-dark"></div>
+</div>
+<div class="flex-1 pt-1">
+<p class="font-bold">4단계: 탐색 알고리즘</p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">순차 탐색, 이진 탐색 학습</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex flex-col items-center">
+<div class="flex size-8 items-center justify-center rounded-full border-2 border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-subtext-light dark:text-subtext-dark">
+<span class="font-bold text-sm">5</span>
+</div>
+</div>
+<div class="flex-1 pt-1">
+<p class="font-bold">5단계: 미니 프로젝트</p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">학습한 알고리즘을 활용하여 간단한 프로그램 만들기</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

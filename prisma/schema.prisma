@@ -1,0 +1,264 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String                   @id @default(cuid())
+  name             String
+  email            String?                  @unique
+  password         String?
+  userTag          String                   @unique
+  role             String                   @default("ASSOCIATE_MEMBER")
+  createdAt        DateTime                 @default(now())
+  updatedAt        DateTime                 @updatedAt
+  enrollments      StudentClassEnrollment[]
+  attendanceLogs   AttendanceLog[]
+  projectMemberships ProjectMember[]
+  projectLogs      ProjectLog[]
+  notifications    Notification[]
+  parentLinkAsStudent ParentLink?           @relation("StudentToParent")
+  parentLinkAsParent ParentLink?            @relation("ParentToStudent")
+}
+
+model ParentLink {
+  id         String @id @default(cuid())
+  studentId  String @unique
+  student    User   @relation("StudentToParent", fields: [studentId], references: [id], onDelete: Cascade)
+  parentId   String @unique
+  parent     User   @relation("ParentToStudent", fields: [parentId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+}
+
+model Class {
+  id          String                   @id @default(cuid())
+  slug        String                   @unique
+  name        String
+  level       String?
+  description String?
+  category    String?
+  cost        Int?
+  classDays   String                   // JSON array of weekdays (0-6)
+  schedule    String?
+  heroImage   String?
+  tags        String?
+  highlight   String?
+  currentStudents Int      @default(0)
+  createdAt   DateTime                 @default(now())
+  updatedAt   DateTime                 @updatedAt
+  enrollments StudentClassEnrollment[]
+  curriculums CurriculumWeek[]
+  attendanceLogs AttendanceLog[]
+  studentProgress StudentProgress[]
+}
+
+model StudentClassEnrollment {
+  id        String   @id @default(cuid())
+  userId    String
+  classId   String
+  role      String?  // Student, Mentor
+  status    String?  // Active, Pending
+  joinedAt  DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  class     Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  @@unique([userId, classId])
+}
+
+model CurriculumWeek {
+  id         String   @id @default(cuid())
+  classId    String
+  weekNumber Int
+  title      String
+  content    String?
+  openDate   DateTime
+  status     String   @default("PUBLISHED")
+  files      String?
+  class      Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+}
+
+model AttendanceLog {
+  id            String       @id @default(cuid())
+  userId        String
+  classId       String
+  kioskId       String?
+  status        String       @default("CHECK_IN")
+  note          String?
+  markedByKiosk Boolean      @default(false)
+  checkInTime   DateTime     @default(now())
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  class         Class        @relation(fields: [classId], references: [id], onDelete: Cascade)
+  kiosk         KioskAccount? @relation(fields: [kioskId], references: [id])
+}
+
+model KioskAccount {
+  id          String          @id @default(cuid())
+  name        String
+  apiKeyHash  String          @unique
+  isActive    Boolean         @default(true)
+  location    String?
+  lastUsedAt  DateTime?
+  attendance  AttendanceLog[]
+}
+
+model Project {
+  id          String         @id @default(cuid())
+  slug        String         @unique
+  title       String
+  description String?
+  status      String         @default("IN_PROGRESS")
+  progress    Int            @default(0)
+  heroImage   String?
+  createdAt   DateTime       @default(now())
+  members     ProjectMember[]
+  logs        ProjectLog[]
+  tasks       ProjectTask[]
+}
+
+model ProjectMember {
+  id        String   @id @default(cuid())
+  projectId String
+  userId    String
+  role      String   @default("Member")
+  joinedAt  DateTime @default(now())
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([projectId, userId])
+}
+
+model ProjectLog {
+  id        String   @id @default(cuid())
+  projectId String
+  userId    String?
+  message   String
+  createdAt DateTime @default(now())
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model ProjectTask {
+  id        String   @id @default(cuid())
+  projectId String
+  title     String
+  owner     String
+  dueDate   DateTime
+  column    String   @default("TODO")
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model CommunityPost {
+  id           String   @id @default(cuid())
+  title        String
+  content      String
+  category     String
+  authorName   String
+  authorRole   String
+  commentCount Int      @default(0)
+  likeCount    Int      @default(0)
+  createdAt    DateTime @default(now())
+}
+
+model Announcement {
+  id          String   @id @default(cuid())
+  title       String
+  summary     String
+  audience    String
+  publishedAt DateTime @default(now())
+  link        String?
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  title     String
+  message   String
+  audience  String
+  link      String?
+  category  String   @default("NOTICE")
+  createdAt DateTime @default(now())
+  readAt    DateTime?
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Metric {
+  id     Int    @id @default(autoincrement())
+  label  String
+  value  String
+  detail String
+  type   String
+}
+
+model Testimonial {
+  id     Int    @id @default(autoincrement())
+  quote  String
+  person String
+  role   String
+}
+
+model NewsItem {
+  id          Int      @id @default(autoincrement())
+  title       String
+  summary     String
+  publishedAt DateTime
+}
+
+model TrendingTag {
+  id    Int    @id @default(autoincrement())
+  label String
+}
+
+model StudentProgress {
+  id          Int      @id @default(autoincrement())
+  studentName String
+  mentor      String
+  nextSession String
+  progress    Int
+  classId     String?
+  className   String
+  class       Class?   @relation(fields: [classId], references: [id])
+}
+
+model Assignment {
+  id        Int      @id @default(autoincrement())
+  title     String
+  dueAt     DateTime
+  status    String
+  ownerName String
+}
+
+model AttendanceSnapshot {
+  id        Int      @id @default(autoincrement())
+  label     String
+  value     String
+  audience  String
+}
+
+model ParentChildRecord {
+  id             Int    @id @default(autoincrement())
+  childName      String
+  attendanceInfo String
+  currentClass   String
+  memo           String
+}
+
+model ParentMessage {
+  id          Int      @id @default(autoincrement())
+  teacherName String
+  summary     String
+  sentAt      DateTime
+}
+
+model AuditLog {
+  id         Int      @id @default(autoincrement())
+  actor      String
+  message    String
+  occurredAt DateTime
+}
+
+model KioskNotice {
+  id   Int    @id @default(autoincrement())
+  body String
+}

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>코딩메이커 아카데미 허브 - 관리자 대시보드</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex h-screen">
+<!-- SideNavBar -->
+<aside class="flex h-full w-64 flex-col bg-white dark:bg-[#111a22] p-4 border-r border-gray-200 dark:border-gray-800">
+<div class="flex flex-col gap-4">
+<div class="flex gap-3 items-center px-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Director Kim's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCi3sm_KWOOp64YyBpLHB9VgV-Lkd6pwtPeWf3Hweq9SpH7u8S9BJ8jv7fNY3oLeQk7Gmmfu0czuTvXkGPGPdmnEN8yzZpcobF0gsm3F8Mmu94Zr07v5vJE0wipKAs4Uh7-AY4ZgZZYykgbstolfRAYOEQURYLZlVGO_DSWJ3NilcjkHOR0Z9_0BmlrJYp6urXqbKitnuq1Jg4vg7JAv489Jel7jsAzPN0xQwixVMSgo8wZBUhIe8l2Kihd-ReL2KBQqZIsNBMdV80");'></div>
+<div class="flex flex-col">
+<h1 class="text-black dark:text-white text-base font-bold leading-normal">김 원장</h1>
+<p class="text-gray-500 dark:text-[#92adc9] text-sm font-normal leading-normal">코딩메이커 아카데미</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-[#233648]" href="#">
+<span class="material-symbols-outlined text-primary dark:text-white">dashboard</span>
+<p class="text-primary dark:text-white text-sm font-bold leading-normal">대시보드</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-600 dark:text-white">school</span>
+<p class="text-gray-700 dark:text-white text-sm font-medium leading-normal">클래스</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-600 dark:text-white">groups</span>
+<p class="text-gray-700 dark:text-white text-sm font-medium leading-normal">학생</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-600 dark:text-white">forum</span>
+<p class="text-gray-700 dark:text-white text-sm font-medium leading-normal">커뮤니티</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-600 dark:text-white">settings</span>
+<p class="text-gray-700 dark:text-white text-sm font-medium leading-normal">설정</p>
+</a>
+</nav>
+</div>
+<div class="mt-auto flex flex-col gap-4">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">새 공지 등록</span>
+</button>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-600 dark:text-white text-base">help_outline</span>
+<p class="text-gray-700 dark:text-white text-sm font-medium leading-normal">도움말</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-600 dark:text-white text-base">logout</span>
+<p class="text-gray-700 dark:text-white text-sm font-medium leading-normal">로그아웃</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto">
+<div class="p-6 sm:p-8">
+<!-- Header & Toolbar -->
+<header class="flex flex-wrap justify-between items-center gap-4 mb-8">
+<!-- PageHeading -->
+<div class="flex flex-col gap-1">
+<p class="text-black dark:text-white text-3xl font-black leading-tight tracking-tight">관리자 대시보드</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-base font-normal leading-normal">김 원장님, 환영합니다!</p>
+</div>
+<!-- ToolBar -->
+<div class="flex items-center gap-2">
+<button class="p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-white">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="relative p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-white">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+</span>
+</button>
+<button class="p-2.5 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-white">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<button class="flex items-center gap-2 min-w-[84px] cursor-pointer justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined text-base">add</span>
+<span class="truncate hidden sm:inline">학생 추가</span>
+</button>
+</div>
+</header>
+<!-- Stats -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-[#111a22] border border-gray-200 dark:border-[#324d67]">
+<p class="text-gray-600 dark:text-white text-base font-medium leading-normal">총 원생 수</p>
+<p class="text-black dark:text-white tracking-light text-3xl font-bold leading-tight">124</p>
+<p class="text-green-500 dark:text-[#0bda5b] text-sm font-medium leading-normal">+2%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-[#111a22] border border-gray-200 dark:border-[#324d67]">
+<p class="text-gray-600 dark:text-white text-base font-medium leading-normal">진행중인 클래스</p>
+<p class="text-black dark:text-white tracking-light text-3xl font-bold leading-tight">8</p>
+<p class="text-green-500 dark:text-[#0bda5b] text-sm font-medium leading-normal">+0%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-[#111a22] border border-gray-200 dark:border-[#324d67]">
+<p class="text-gray-600 dark:text-white text-base font-medium leading-normal">오늘 출석률</p>
+<p class="text-black dark:text-white tracking-light text-3xl font-bold leading-tight">95%</p>
+<p class="text-red-500 dark:text-[#fa6238] text-sm font-medium leading-normal">-1%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-[#111a22] border border-gray-200 dark:border-[#324d67]">
+<p class="text-gray-600 dark:text-white text-base font-medium leading-normal">미확인 질문</p>
+<p class="text-black dark:text-white tracking-light text-3xl font-bold leading-tight">3</p>
+<p class="text-green-500 dark:text-[#0bda5b] text-sm font-medium leading-normal">+3</p>
+</div>
+</section>
+<!-- Charts -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+<div class="flex flex-col gap-4 rounded-lg border border-gray-200 dark:border-[#324d67] p-6 bg-white dark:bg-[#111a22]">
+<div class="flex flex-col">
+<p class="text-black dark:text-white text-lg font-bold leading-normal">클래스별 학생 분포</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-sm font-normal">평균 15.5명</p>
+</div>
+<div class="grid min-h-[220px] grid-flow-col gap-6 grid-rows-[1fr_auto] items-end justify-items-center px-3 pt-4">
+<div class="bg-primary/20 dark:bg-[#233648] w-full rounded-t-md" style="height: 20%;"></div>
+<p class="text-gray-500 dark:text-[#92adc9] text-[13px] font-bold leading-normal">Alpha</p>
+<div class="bg-primary/20 dark:bg-[#233648] w-full rounded-t-md" style="height: 50%;"></div>
+<p class="text-gray-500 dark:text-[#92adc9] text-[13px] font-bold leading-normal">Beta</p>
+<div class="bg-primary/20 dark:bg-[#233648] w-full rounded-t-md" style="height: 30%;"></div>
+<p class="text-gray-500 dark:text-[#92adc9] text-[13px] font-bold leading-normal">Gamma</p>
+<div class="bg-primary dark:bg-primary w-full rounded-t-md" style="height: 100%;"></div>
+<p class="text-primary dark:text-primary-400 text-[13px] font-bold leading-normal">Delta</p>
+<div class="bg-primary/20 dark:bg-[#233648] w-full rounded-t-md" style="height: 10%;"></div>
+<p class="text-gray-500 dark:text-[#92adc9] text-[13px] font-bold leading-normal">Epsilon</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-lg border border-gray-200 dark:border-[#324d67] p-6 bg-white dark:bg-[#111a22]">
+<div class="flex flex-col">
+<p class="text-black dark:text-white text-lg font-bold leading-normal">주간 출결 현황</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-sm font-normal">최근 7일 평균 92%</p>
+</div>
+<div class="flex min-h-[220px] flex-1 flex-col justify-end gap-8 py-4">
+<svg fill="none" height="100%" preserveaspectratio="none" viewbox="-3 0 478 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="chart-gradient" x1="236" x2="236" y1="1" y2="149">
+<stop stop-color="#137fec" stop-opacity="0.2"></stop>
+<stop offset="1" stop-color="#137fec" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H0V109Z" fill="url(#chart-gradient)"></path>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#137fec" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<div class="flex justify-around">
+<p class="text-gray-500 dark:text-[#92adc9] text-[13px] font-bold">월</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-[13px] font-bold">화</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-[13px] font-bold">수</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-[13px] font-bold">목</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-[13px] font-bold">금</p>
+<p class="text-gray-500 dark:text-[#92adc9] text-[13px] font-bold">토</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Lists & Tables -->
+<section class="grid grid-cols-1 xl:grid-cols-5 gap-6">
+<div class="xl:col-span-3 flex flex-col gap-4 rounded-lg border border-gray-200 dark:border-[#324d67] p-6 bg-white dark:bg-[#111a22]">
+<h3 class="text-black dark:text-white text-lg font-bold leading-normal">오늘의 클래스 일정</h3>
+<div class="flow-root">
+<ul class="-mb-8" role="list">
+<li>
+<div class="relative pb-8">
+<span aria-hidden="true" class="absolute left-4 top-4 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-700"></span>
+<div class="relative flex space-x-3">
+<div>
+<span class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center ring-8 ring-white dark:ring-[#111a22]">
+<span class="material-symbols-outlined text-primary text-base">code</span>
+</span>
+</div>
+<div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+<div>
+<p class="text-sm text-gray-500 dark:text-gray-400">14:00 - 15:30</p>
+<p class="font-medium text-gray-900 dark:text-white">Alpha 클래스 (기초 파이썬)</p>
+</div>
+<div class="whitespace-nowrap text-right text-sm text-gray-500 dark:text-gray-400">
+<p>이선생님</p>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<div class="relative pb-8">
+<span aria-hidden="true" class="absolute left-4 top-4 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-700"></span>
+<div class="relative flex space-x-3">
+<div>
+<span class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center ring-8 ring-white dark:ring-[#111a22]">
+<span class="material-symbols-outlined text-primary text-base">data_object</span>
+</span>
+</div>
+<div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+<div>
+<p class="text-sm text-gray-500 dark:text-gray-400">16:00 - 17:30</p>
+<p class="font-medium text-gray-900 dark:text-white">Gamma 클래스 (웹 개발 심화)</p>
+</div>
+<div class="whitespace-nowrap text-right text-sm text-gray-500 dark:text-gray-400">
+<p>박선생님</p>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<div class="relative">
+<div class="relative flex space-x-3">
+<div>
+<span class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center ring-8 ring-white dark:ring-[#111a22]">
+<span class="material-symbols-outlined text-primary text-base">terminal</span>
+</span>
+</div>
+<div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+<div>
+<p class="text-sm text-gray-500 dark:text-gray-400">18:00 - 19:30</p>
+<p class="font-medium text-gray-900 dark:text-white">Delta 클래스 (알고리즘)</p>
+</div>
+<div class="whitespace-nowrap text-right text-sm text-gray-500 dark:text-gray-400">
+<p>최선생님</p>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="xl:col-span-2 flex flex-col gap-4 rounded-lg border border-gray-200 dark:border-[#324d67] p-6 bg-white dark:bg-[#111a22]">
+<h3 class="text-black dark:text-white text-lg font-bold leading-normal">최근 커뮤니티 활동</h3>
+<div class="space-y-4">
+<div class="flex flex-col gap-1 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">
+<p class="text-sm font-medium text-gray-900 dark:text-white truncate">[공지] 8월 학원 방학 일정 안내</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">관리자 · 2시간 전</p>
+</div>
+<div class="flex flex-col gap-1 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">
+<p class="text-sm font-medium text-gray-900 dark:text-white truncate">[질문] 파이썬 과제 제출 관련 질문입니다.</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">김민준 학생 · 5시간 전</p>
+</div>
+<div class="flex flex-col gap-1 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">
+<p class="text-sm font-medium text-gray-900 dark:text-white truncate">[질문] 웹 개발 클래스 보충수업 가능한가요?</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">박서연 학부모님 · 1일 전</p>
+</div>
+<div class="flex flex-col gap-1 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">
+<p class="text-sm font-medium text-gray-900 dark:text-white truncate">[공지] 코딩 경진대회 참가 안내</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">관리자 · 2일 전</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

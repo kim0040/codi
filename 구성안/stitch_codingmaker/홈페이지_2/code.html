@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>코딩메이커 아카데미 허브</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", secondary: "#4D4D4D", accent: "#FFC107", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: inherit; /* Inherit size from parent */
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- TopNavBar -->
+<div class="w-full bg-background-light dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
+<header class="flex items-center justify-between whitespace-nowrap px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto h-16">
+<div class="flex items-center gap-4 text-gray-900 dark:text-white">
+<div class="text-primary text-2xl">
+<span class="material-symbols-outlined" style="font-size: 28px;">
+                                data_object
+                            </span>
+</div>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">코딩메이커 아카데미 허브</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal" href="#">학원소개</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal" href="#">과정안내</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal" href="#">소식/이벤트</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-white text-sm font-medium leading-normal" href="#">문의하기</a>
+</div>
+<div class="flex gap-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">로그인</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">회원가입</span>
+</button>
+</div>
+</div>
+<div class="md:hidden">
+<button class="text-gray-800 dark:text-gray-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+</div>
+<main class="flex-1">
+<!-- HeroSection -->
+<div class="relative py-20 sm:py-28 lg:py-36">
+<div class="absolute inset-0 bg-dots-pattern opacity-5 dark:opacity-10"></div>
+<div class="relative flex min-h-[480px] flex-col gap-6 items-center justify-center text-center px-4">
+<div class="flex flex-col gap-4 max-w-3xl">
+<h1 class="text-gray-900 dark:text-white text-4xl font-black leading-tight tracking-tighter sm:text-5xl lg:text-6xl">
+                                미래를 코딩하다, <br/><span class="text-primary">코딩메이커 아카데미</span>
+</h1>
+<h2 class="text-secondary dark:text-gray-400 text-base font-normal leading-normal sm:text-lg lg:text-xl">
+                                통합 학습 관리(LMS), 실시간 소통, 프로젝트 기반 학습을 통해 최고의 코딩 전문가로 성장하세요.
+                            </h2>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 sm:h-14 sm:px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] sm:text-lg">
+<span class="truncate">상담 신청하기</span>
+</button>
+</div>
+</div>
+<!-- FeatureSection -->
+<div class="py-16 sm:py-24">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col gap-12">
+<div class="flex flex-col gap-4 text-center">
+<h2 class="text-gray-900 dark:text-white tracking-tight text-3xl font-bold leading-tight sm:text-4xl">코딩메이커 아카데미의 강점</h2>
+<p class="text-secondary dark:text-gray-400 text-base font-normal leading-normal max-w-2xl mx-auto">우리는 체계적인 관리와 실무 중심의 교육으로 당신의 성공적인 미래를 만듭니다.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-1 gap-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-background-dark p-6 flex-col items-start text-left">
+<div class="text-primary bg-primary/10 p-3 rounded-lg text-3xl">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight">통합 학습 관리 시스템</h3>
+<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal">LMS를 통해 학습 진행 상황과 출결을 한번에 관리합니다.</p>
+</div>
+</div>
+<div class="flex flex-1 gap-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-background-dark p-6 flex-col items-start text-left">
+<div class="text-primary bg-primary/10 p-3 rounded-lg text-3xl">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight">실시간 학생/학부모 소통</h3>
+<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal">전용 커뮤니케이션 채널로 언제나 원활하게 소통하세요.</p>
+</div>
+</div>
+<div class="flex flex-1 gap-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-background-dark p-6 flex-col items-start text-left">
+<div class="text-primary bg-primary/10 p-3 rounded-lg text-3xl">
+<span class="material-symbols-outlined">code_blocks</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-gray-900 dark:text-white text-lg font-bold leading-tight">프로젝트 기반 학습</h3>
+<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal">실제 프로젝트를 수행하며 실무 역량을 강화합니다.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Latest News & Events Section -->
+<div class="py-16 sm:py-24 bg-white dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- SectionHeader -->
+<div class="flex justify-between items-center pb-8">
+<h2 class="text-gray-900 dark:text-white text-3xl font-bold leading-tight tracking-tight">최신 소식 및 이벤트</h2>
+<button class="text-primary text-sm font-bold flex items-center gap-1">
+                                더보기 <span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+<!-- ImageGrid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="flex flex-col gap-3 group">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="students collaborating in a modern office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAigLjD8mkjrwLTJvHyCQNlfEdbP9xm559Ciz3mIWA0S3m1Dr7KeDJq_0z14dGOMOWuKGNwlRTHU2dbbsffI_1DHuSh5t3xZZVWWJpXwgJFX_RbUAj2PRmdZvXjM-x0wVPC0CO6KSl1OrvwZ-SFYQZ1LI8sKZPokXC6BQJrCBi0rLvB-HCOzgPbIC-lSE9WQ_9PjtveNteUWhqMEcIvQa8gTl7tOw3tJuNfD9Bk6Gqem3U9B0Iz8RXTDtedtMfSGvcGF9pg7v_JBoE"/>
+</div>
+<div>
+<p class="text-gray-900 dark:text-white text-base font-bold leading-normal">코딩 경진대회 수상 소식</p>
+<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal">2024.07.15</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 group">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="teacher explaining code on a large screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDej4T9PO2WFlnRSkYH9aHvskATSECsj7VXRigQpvJ_j_Qaj7X0KnpKJhry50tjeR0QjAXU0tuzQGzVB-QTDhgBsk4mnTrNU7Ix73qeRaz8LGkUaRuWXFHPcNzyFcSoNjuAdsOoZSLdReMpmvXHjxU6Sn9j0Cix_O92u7ZWfS5ErjDKqQoT7UI-jwUKA4pPOxwV92LTjrDESvItPK087nCiglM_Rfy6yrxEYZZpnghlYjB1NzKeviGCzODZ0VsvbfvV_z2g5-Zh3Co"/>
+</div>
+<div>
+<p class="text-gray-900 dark:text-white text-base font-bold leading-normal">여름방학 특강반 개강 안내</p>
+<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal">2024.07.12</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 group">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="parents attending an information session" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi3VcQR4Edo3Zy3KT9oIuTpHUBPnDIaB_iMnb7HuEmxrYtzlw7_FNK0kBQgggE346yaYAkClD7SR6ZURLEoYiqw4MUV_MnjytrGS_R2OXmpvKRv1_gIy4yEuZ1q-0W8BNcNCQ75Sm-ECKfCxGva9EJb163yq30w7HRKjQf1IWlxHzmTSiNqm-4P24ioq1lnu0mhoRKCSEHmpwgyMzNQM_QGjNgbji9EdfSo6DYpUe7OL9h11YlL9jOGYTn-2Uu1djp4E3yQ8N6kDY"/>
+</div>
+<div>
+<p class="text-gray-900 dark:text-white text-base font-bold leading-normal">학부모 설명회 개최</p>
+<p class="text-secondary dark:text-gray-400 text-sm font-normal leading-normal">2024.07.10</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Call to Action (CTA) Banner -->
+<div class="py-16 sm:py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-primary/90 rounded-xl p-8 md:p-12 text-center text-white">
+<h2 class="text-2xl md:text-3xl font-bold mb-3">지금 바로 시작하세요!</h2>
+<p class="max-w-2xl mx-auto mb-6 text-white/90">상담 신청을 통해 코딩 전문가로의 첫걸음을 내딛어 보세요. 당신의 미래를 함께 만들겠습니다.</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-accent text-gray-900 text-base font-bold leading-normal tracking-[0.015em] mx-auto">
+<span class="truncate">상담 신청하기</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="text-primary text-2xl">
+<span class="material-symbols-outlined">data_object</span>
+</div>
+<h3 class="text-gray-900 dark:text-white text-base font-bold">코딩메이커 아카데미 허브</h3>
+</div>
+<p class="text-secondary dark:text-gray-400">
+                                주소: 서울특별시 강남구 테헤란로 123, 4층<br/>
+                                연락처: 02-1234-5678<br/>
+                                사업자등록번호: 123-45-67890
+                            </p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-bold text-gray-900 dark:text-white">바로가기</h4>
+<ul class="space-y-2">
+<li><a class="text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-white" href="#">학원소개</a></li>
+<li><a class="text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-white" href="#">과정안내</a></li>
+<li><a class="text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-white" href="#">소식/이벤트</a></li>
+<li><a class="text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-white" href="#">문의하기</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-bold text-gray-900 dark:text-white">소셜 미디어</h4>
+<div class="flex space-x-4 text-secondary dark:text-gray-400">
+<!-- Social media icons would go here -->
+<a class="hover:text-primary dark:hover:text-white" href="#">Blog</a>
+<a class="hover:text-primary dark:hover:text-white" href="#">Facebook</a>
+<a class="hover:text-primary dark:hover:text-white" href="#">Instagram</a>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 text-center text-xs text-secondary dark:text-gray-500">
+<p>© 2024 CodingMaker Academy. All rights reserved.</p>
+<a class="hover:text-primary dark:hover:text-white mt-2 inline-block" href="#">개인정보처리방침</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

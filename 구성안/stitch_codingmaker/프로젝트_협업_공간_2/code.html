@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodingMaker Academy Hub - Project Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", secondary: "#F5F7FA", accent: "#50E3C2", "text-main": "#333333", "text-subtle": "#7F8C8D", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 sm:px-10 py-3 bg-white dark:bg-[#1A2836]">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-text-main dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_319)">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"></path>
+</g>
+<defs>
+<clippath id="clip0_6_319">
+<rect fill="white" height="48" width="48"></rect>
+</clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">CodingMaker Academy</h2>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 sm:gap-6 items-center">
+<div class="hidden md:flex items-center gap-6">
+<a class="text-text-subtle dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-text-main dark:text-white text-sm font-bold leading-normal border-b-2 border-primary pb-1" href="#">My Projects</a>
+<a class="text-text-subtle dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal" href="#">Community</a>
+<a class="text-text-subtle dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal" href="#">Help</a>
+</div>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg size-10 bg-slate-100 dark:bg-slate-800 text-text-subtle dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined !text-2xl">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBbQ7SwTX0bKr-6YfaNowksZiIC2IlsMeN2erc0tWOjPmcfqydNbEcDRHIL1-c2ZpMtq5SmrVai2dEF7HWHKvFSK6RDNbGlMLoJq2j7YMDUcBzFRyqaxIUsUJVabAKS-j1RDt7-CIV6AHHr7wNZBP_64NFjqI-ROOuU4wohzpwLFEGYfl91HhU72I_DShGFU1EkoSw_3vw3EME6s6h2atAHAV2gQD1JB1p-zg8hx0rxjINSTRCEuD9aZQXuGr0Mx2lMIe8wgx5o8LI");'></div>
+</div>
+</header>
+<div class="flex flex-1">
+<aside class="w-72 flex-shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1A2836] p-4">
+<div class="flex h-full flex-col justify-between">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-10 bg-primary/20 text-primary flex items-center justify-center font-bold text-xl">
+<span>α</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-text-main dark:text-white text-base font-medium leading-normal">Project Alpha</h1>
+<p class="text-text-subtle dark:text-slate-400 text-sm font-normal leading-normal">AI Learning Platform</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-subtle dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined !text-xl">info</span>
+<p class="text-sm font-medium leading-normal">Project Info</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined !text-xl" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<p class="text-sm font-medium leading-normal">Chat</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-subtle dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined !text-xl">folder</span>
+<p class="text-sm font-medium leading-normal">Files</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-subtle dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined !text-xl">history</span>
+<p class="text-sm font-medium leading-normal">Change Log</p>
+</a>
+</div>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-800 pt-6">
+<h2 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-3 pb-3">Team Members</h2>
+<div class="flex items-center px-3 py-3 justify-start">
+<div class="flex -space-x-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover border-white dark:border-[#1A2836] rounded-full size-9 border-2" data-alt="Team member avatar 1" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBg8giCjHq7AK6mACycLJIrhhrp_aCDQ6v8kzF-HUfkWyQX7XTOVFvbXugqTPuqhJdelZqsO48s3tnenssLJIs5W7J3AlLL_msHOPsRw8Zr8qSw8U0Hmuht1kNDKlBgMRZoSFwL_PhWC_Qi5-NtYClh5geZ4S6mcquH6JCyTNQCGHOnylYvKDMPBquW49s5zXGNVKoF4V_H1azLNmB3plu-cS67GAgEl9NIj5rLC7COYSaPOqhvZx3W_idBpyLeKvLYrp9dKN7n66I");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover border-white dark:border-[#1A2836] rounded-full size-9 border-2" data-alt="Team member avatar 2" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBRnTwb-1BwocxRa50_K0-NIGvT3UhjDMb1y4YU0-FELOBkoDEN0YJcQQqwo5xr_j-YnaREj21GHtEmG0j4gtdImMc8v88bbZTnQu3iFl6c_9MsnobMXWCeIlbbnJZUWUhW1wur0GeuvQtlOm5vYUpw6yZxlt7Cwl3WtzNu-l6MSj1ip4mDv08waUe-aPEMRBMARfifT5h-mSKBvMVvTRnuDbTLXOW2ljRHUBpu84pB5a4IGXqN11sLAuU77FMBEFEaie-mhRtw_eQ");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover border-white dark:border-[#1A2836] rounded-full size-9 border-2" data-alt="Team member avatar 3" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDB1QiBesmLO66tYWWNMIkjWK-3aYwKNVDxD7aFZ5KZbguNKw28SwUMHJaY-vj-wLdl8TEg814QcpXbskxiLvfvH4qtr29ws7CobBalrmMlNyxSjqvIpa-jj7k3fOEsWeV5Dt_8G5shWwLtALu-5LlDAGx_seur105mt8ZRpYXCmp3bXpQ04Fy-wzpDAUWw8YkrQxvC1o9CwmRr1Vb5nMBw3qfNOAkn1tKdLYwvwUf6cTPxBSW4Evhl9O12X9kFu6fTE_YMIhHrXZs");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover border-white dark:border-[#1A2836] rounded-full size-9 border-2" data-alt="Team member avatar 4" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsDJHiW5K08bV-7Ujs1to5JjOvESiEKmVn7HO3Jf3gl8yiwrM4UfwObtQch3lSLD0L9h-HM1EBPg6XywtO7i_GPPyZPQgBpXBDBIKhNbqPOWKUy-28xd9N4GFqoBsGJ3xyxn6Qz9P6_rARTtGTWwMqPdSRzdK07h-k12yC9cLlFeHUGEMo4WikEzJf7KSvH_wvjDChPr9r3G_LlB3LSnXceQE8bHmlotsxFieUDDx264oSDIjMvgOfeYcgTwXJJyq6Cuh8iCUdVcM");'></div>
+</div>
+</div>
+<div class="flex px-3 py-3 justify-start">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-100 dark:bg-slate-800 text-text-main dark:text-white gap-2 text-sm font-semibold leading-normal tracking-[-0.01em] hover:bg-slate-200 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined !text-xl">person_add</span>
+<span class="truncate">Invite Team Member</span>
+</button>
+</div>
+</div>
+</div>
+<button class="flex w-full max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+<span class="truncate">Create New Project</span>
+</button>
+</div>
+</aside>
+<main class="flex-1 p-6 sm:p-8 bg-background-light dark:bg-background-dark">
+<div class="max-w-4xl mx-auto h-full flex flex-col">
+<div class="flex items-center justify-between pb-6 border-b border-slate-200 dark:border-slate-700">
+<div>
+<h1 class="text-2xl font-bold text-text-main dark:text-white">Chat</h1>
+<p class="text-text-subtle dark:text-slate-400 mt-1">Real-time discussion with your team members.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center size-9 rounded-lg bg-white dark:bg-slate-800 text-text-subtle dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined !text-xl">search</span>
+</button>
+<button class="flex items-center justify-center size-9 rounded-lg bg-white dark:bg-slate-800 text-text-subtle dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined !text-xl">more_vert</span>
+</button>
+</div>
+</div>
+<div class="flex-1 flex flex-col-reverse overflow-y-auto py-6 space-y-4 space-y-reverse pr-4">
+<!-- Chat Messages -->
+<div class="flex items-start gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 flex-shrink-0" data-alt="Avatar of Sarah" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuADIOrR8WB1I8nBXj2nbSrGX7ZtzZngIiW-Cab2rGD2ai5LHyKIOQfhoIyC3HImnwyUqb8QbLUXy0-6kjlLBIVuVfHzvtDoep8Njmq1kkeFF3R7wXZrUIUBFMzK-49jzRhBf8mVBY7Ldq_02sh6VCEYnDWBYPU7qNAlmjjNd8Huc_rk6wB3Ja-Z0BUPEJLC_6rfh6rpD3eSXrKOApybwxOwok7UCFZBtbBZPhwlZbZsexhWhGkrSy0buT_w3a2VysYUVKt8a4ldxbo");'></div>
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-2">
+<p class="font-semibold text-text-main dark:text-white">Sarah</p>
+<p class="text-xs text-text-subtle dark:text-slate-500">3:47 PM</p>
+</div>
+<div class="p-3 rounded-lg rounded-tl-none bg-white dark:bg-slate-800 text-text-main dark:text-slate-200 text-sm leading-relaxed max-w-md border border-slate-200 dark:border-slate-700">
+                                    Great! I'll review it and get back to you with feedback by the end of the day.
+                                </div>
+</div>
+</div>
+<div class="flex items-start gap-3 justify-end">
+<div class="flex flex-col gap-1 items-end">
+<div class="flex items-baseline gap-2">
+<p class="font-semibold text-text-main dark:text-white">You</p>
+<p class="text-xs text-text-subtle dark:text-slate-500">3:46 PM</p>
+</div>
+<div class="p-3 rounded-lg rounded-tr-none bg-primary text-white text-sm leading-relaxed max-w-md">
+                                    Okay, I've just uploaded the final version of the project proposal to the Files section. Please take a look when you have a moment.
+                                </div>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 flex-shrink-0" data-alt="Your avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBbSP655umTzZ7VNWv5YeNOPKq_gtivAkadQ3UgkDerLqtpfR55roP6gEhc9LuIauTw2pSm1nlXDaDcm5STFRQIkMsaXOUj-KGhVjRH1ZgADoGr01iCJWtIn9n2pZWP1Xh54jV6OyE7p-ZTjuyKqJ-n5o_Tbdvg3voTvYz6GWRtOl3RY3szmnbeKo5HkjjwCT7AfaBmc3Qxd7gaq6a0Av8IpsLnjoyWbxlj-4gIVuOH9LmUQmoW9OrxliuTn0Rkb6LVndF-K_GTaew");'></div>
+</div>
+<div class="flex items-start gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 flex-shrink-0" data-alt="Avatar of Mike" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZuPo4FmJpw1IJCSYfGQRk3ci62Nhn1cnqatcDRzCp-kL2EEhleWPk7JWKL2gNo1EOXp5OC8LXXUuZ2KsKuIqdKzwNwV7GORkxstLuM7C4se5oSgNsbb27OS5d3W_AQJWGoJsUQF2gw6JFL9g3X7OUwU_l9VDy_xnYAqYSrQEVzvKyWM2Dn85DSPT3JUm_f73u0cceat6Aj5YRq_VDXUpnhnHlBL-OMH-7xT24Hj3P-bZq3CoJlaNK8uXLeDHMkTecPlJrw1_vkJU");'></div>
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-2">
+<p class="font-semibold text-text-main dark:text-white">Mike</p>
+<p class="text-xs text-text-subtle dark:text-slate-500">3:45 PM</p>
+</div>
+<div class="p-3 rounded-lg rounded-tl-none bg-white dark:bg-slate-800 text-text-main dark:text-slate-200 text-sm leading-relaxed max-w-md border border-slate-200 dark:border-slate-700">
+                                    Welcome, Jane! Glad to have you on board.
+                                </div>
+</div>
+</div>
+<div class="text-center py-2">
+<span class="text-xs font-semibold text-text-subtle dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">Jane was added to the project</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-200 dark:border-slate-700">
+<div class="relative">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-main dark:text-white focus:outline-none focus:ring-2 focus:ring-primary border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 h-12 placeholder:text-text-subtle dark:placeholder:text-slate-500 px-4 pr-24 text-sm font-normal leading-normal" placeholder="Type a message..." value=""/>
+<div class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+<button class="flex items-center justify-center size-9 rounded-lg text-text-subtle dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined !text-xl">add_reaction</span>
+</button>
+<button class="flex items-center justify-center size-9 rounded-lg text-text-subtle dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined !text-xl">attach_file</span>
+</button>
+<button class="flex items-center justify-center size-9 rounded-lg text-white bg-primary hover:bg-primary/90">
+<span class="material-symbols-outlined !text-xl">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
