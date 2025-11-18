@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { prisma } from '@/lib/prisma';
 import { ArrowRight, School, MessageSquare, CodeXml } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 // Helper function to format date
 const formatDate = (date: Date) => {
   return new Intl.DateTimeFormat('ko-KR', {
@@ -31,12 +33,27 @@ const features = [
   },
 ];
 
-export default async function MarketingPage() {
-  // Fetch dynamic data from the database
-  const [news, testimonials] = await Promise.all([
+async function loadMarketingData() {
+  const [newsResult, testimonialsResult] = await Promise.allSettled([
     prisma.newsItem.findMany({ orderBy: { publishedAt: 'desc' }, take: 3 }),
     prisma.testimonial.findMany({ take: 2 }),
   ]);
+
+  if (newsResult.status === 'rejected' || testimonialsResult.status === 'rejected') {
+    console.error('Failed to load marketing data', {
+      newsError: newsResult.status === 'rejected' ? newsResult.reason : undefined,
+      testimonialsError: testimonialsResult.status === 'rejected' ? testimonialsResult.reason : undefined,
+    });
+  }
+
+  return {
+    news: newsResult.status === 'fulfilled' ? newsResult.value : [],
+    testimonials: testimonialsResult.status === 'fulfilled' ? testimonialsResult.value : [],
+  };
+}
+
+export default async function MarketingPage() {
+  const { news, testimonials } = await loadMarketingData();
 
   return (
     <main className="flex-1">
@@ -124,7 +141,7 @@ export default async function MarketingPage() {
       
       {/* Testimonials Section */}
       {testimonials.length > 0 && (
-         <section className="py-16 sm:py-24">
+        <section className="py-16 sm:py-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col gap-6 text-center">
               <h2 className="text-3xl font-bold text-slate-900 dark:text-white">팀과 학부모가 직접 전하는 변화</h2>
