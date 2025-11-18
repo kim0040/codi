@@ -8,7 +8,7 @@ import { ProjectChat } from '@/components/project-chat';
 import { ProjectFileManager, type ProjectFileRecord } from '@/components/project-file-manager';
 import { ProjectActivityFeed } from '@/components/project-activity-feed';
 import { authOptions } from '@/lib/auth';
-import { USER_ROLES } from '@/lib/rbac';
+import { USER_ROLES, isRoleAllowed } from '@/lib/rbac';
 
 export default async function ProjectsPage() {
   const session = await getServerSession(authOptions);
@@ -25,7 +25,7 @@ export default async function ProjectsPage() {
     take: 10
   });
 
-  const isAdminRole = session ? [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN].includes(session.user.role) : false;
+  const isAdminRole = isRoleAllowed(session?.user.role, [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN]);
   const projectCards: ProjectCardPayload[] = projects.map((project) => ({
     id: project.id,
     slug: project.slug,

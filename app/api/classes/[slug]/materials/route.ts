@@ -2,11 +2,11 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 import { authOptions } from '@/lib/auth';
-import { USER_ROLES } from '@/lib/rbac';
+import { USER_ROLES, isRoleAllowed } from '@/lib/rbac';
 
 export async function POST(request: Request, { params }: { params: { slug: string } }) {
   const session = await getServerSession(authOptions);
-  if (!session || ![USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN].includes(session.user.role)) {
+  if (!session || !isRoleAllowed(session.user.role, [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN])) {
     return NextResponse.json({ error: '자료 업로드 권한이 없습니다.' }, { status: 403 });
   }
 

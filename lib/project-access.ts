@@ -1,9 +1,11 @@
 import { prisma } from '@/lib/prisma';
 import { USER_ROLES } from '@/lib/rbac';
 
-const ADMIN_ROLES = new Set([USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN]);
+type UserRole = (typeof USER_ROLES)[keyof typeof USER_ROLES];
 
-export async function canAccessProject(projectId: string, userId: string, role?: string | null) {
+const ADMIN_ROLES = new Set<UserRole>([USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN]);
+
+export async function canAccessProject(projectId: string, userId: string, role?: UserRole | null) {
   if (!userId) {
     return false;
   }
@@ -16,7 +18,7 @@ export async function canAccessProject(projectId: string, userId: string, role?:
   return Boolean(membership);
 }
 
-export async function canManageProject(projectId: string, userId: string, role?: string | null, ownerOnly = false) {
+export async function canManageProject(projectId: string, userId: string, role?: UserRole | null, ownerOnly = false) {
   if (!userId) {
     return false;
   }

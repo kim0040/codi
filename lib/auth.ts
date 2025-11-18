@@ -1,11 +1,17 @@
 import type { NextAuthOptions } from 'next-auth';
+import type { Adapter } from 'next-auth/adapters';
 import Credentials from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { compare } from 'bcryptjs';
 import { prisma } from './prisma';
+import { USER_ROLES } from '@/lib/rbac';
+
+type UserRole = (typeof USER_ROLES)[keyof typeof USER_ROLES];
+
+const adapter = PrismaAdapter(prisma) as Adapter;
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter,
   session: {
     strategy: 'jwt'
   },
@@ -37,11 +43,13 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
+        const userRole = (user.role ?? USER_ROLES.ASSOCIATE_MEMBER) as UserRole;
+
         return {
           id: user.id,
           name: user.name,
           email: user.email,
-          role: user.role,
+          role: userRole,
           userTag: user.userTag
         };
       }
@@ -50,14 +58,14 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = (user as unknown as { role?: string }).role;
+        token.role = (user as unknown as { role?: UserRole }).role;
         token.userTag = (user as unknown as { userTag?: string }).userTag;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        session.user.role = (token.role as string) ?? 'ASSOCIATE_MEMBER';
+        session.user.role = (token.role as UserRole) ?? USER_ROLES.ASSOCIATE_MEMBER;
         session.user.userTag = (token.userTag as string) ?? '';
         session.user.id = token.sub as string;
       }

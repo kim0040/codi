@@ -1,5 +1,8 @@
 import 'next-auth';
 import 'next-auth/jwt';
+import type { USER_ROLES } from '@/lib/rbac';
+
+type UserRole = (typeof USER_ROLES)[keyof typeof USER_ROLES];
 
 declare module 'next-auth' {
   interface Session {
@@ -7,20 +10,27 @@ declare module 'next-auth' {
       id: string;
       name?: string | null;
       email?: string | null;
-      role: string;
+      role: UserRole;
       userTag: string;
     };
   }
 
   interface User {
-    role: string;
+    role: UserRole;
     userTag: string;
   }
 }
 
 declare module 'next-auth/jwt' {
   interface JWT {
-    role?: string;
+    role?: UserRole;
     userTag?: string;
+  }
+}
+
+declare module 'next-auth/adapters' {
+  interface AdapterUser {
+    role: UserRole;
+    userTag: string;
   }
 }

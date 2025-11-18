@@ -4,21 +4,21 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { cn } from '@/lib/utils';
-import { USER_ROLES } from '@/lib/rbac';
+import { USER_ROLES, isRoleAllowed } from '@/lib/rbac';
 
 const links = [
   { href: '/dashboard/admin', label: '관리자 대시보드', roles: [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN] },
   { href: '/dashboard/student', label: '학생 대시보드', roles: [USER_ROLES.FULL_MEMBER, USER_ROLES.ASSOCIATE_MEMBER] },
   { href: '/dashboard/parent', label: '학부모 대시보드', roles: [USER_ROLES.PARENT] },
-  { href: '/community', label: '커뮤니티' },
-  { href: '/projects', label: '프로젝트 협업' }
+  { href: '/community', label: '커뮤니티', roles: [USER_ROLES.FULL_MEMBER, USER_ROLES.ADMIN, USER_ROLES.SUPER_ADMIN] },
+  { href: '/projects', label: '프로젝트 협업', roles: [USER_ROLES.FULL_MEMBER, USER_ROLES.ADMIN, USER_ROLES.SUPER_ADMIN] }
 ] as const;
 
 export function DashboardSidebar() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const role = session?.user.role;
-  const accessibleLinks = links.filter((item) => !item.roles || (role && item.roles.includes(role)));
+  const accessibleLinks = links.filter((item) => isRoleAllowed(role, item.roles));
 
   return (
     <aside className="hidden w-60 flex-shrink-0 flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-sm shadow-sm dark:border-slate-800 dark:bg-[#111a24] md:flex">

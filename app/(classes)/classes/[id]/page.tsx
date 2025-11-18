@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { MaterialUploadForm } from '@/components/material-upload-form';
 import { AttachmentList } from '@/components/attachment-list';
 import { authOptions } from '@/lib/auth';
-import { USER_ROLES } from '@/lib/rbac';
+import { USER_ROLES, isRoleAllowed } from '@/lib/rbac';
 
 type Attachment = {
   name: string;
@@ -64,7 +64,7 @@ export default async function ClassDetailPage({ params }: { params: { id: string
 
   const tags = klass.tags ? klass.tags.split(',').map((tag) => tag.trim()).filter(Boolean) : [];
   const meta = classMeta[klass.slug as keyof typeof classMeta] ?? defaultMeta;
-  const canManage = session ? [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN].includes(session.user.role) : false;
+  const canManage = isRoleAllowed(session?.user.role, [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN]);
 
   return (
     <div className="bg-slate-50/60 py-12 dark:bg-[#050a11]">
@@ -129,7 +129,7 @@ export default async function ClassDetailPage({ params }: { params: { id: string
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Week {item.weekNumber}</p>
                       <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{item.title}</h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-300">{item.summary}</p>
+                      
                     </div>
                     <div className="text-right">
                       <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">{item.status}</span>

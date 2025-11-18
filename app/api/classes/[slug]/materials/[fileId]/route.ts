@@ -2,12 +2,12 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 import { authOptions } from '@/lib/auth';
-import { USER_ROLES } from '@/lib/rbac';
+import { USER_ROLES, isRoleAllowed } from '@/lib/rbac';
 import { deleteResource } from '@/lib/cloudinary';
 
 export async function DELETE(request: Request, { params }: { params: { slug: string; fileId: string } }) {
   const session = await getServerSession(authOptions);
-  if (!session || ![USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN].includes(session.user.role)) {
+  if (!isRoleAllowed(session?.user.role, [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN])) {
     return NextResponse.json({ error: '삭제 권한이 없습니다.' }, { status: 403 });
   }
 

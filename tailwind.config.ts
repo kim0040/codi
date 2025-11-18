@@ -17,7 +17,7 @@ const config: Config = {
         'background-dark': '#0f1923'
       },
       fontFamily: {
-        display: ['var(--font-inter)', 'var(--font-noto)', ...fontFamily.sans]
+        display: ['Inter', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', ...fontFamily.sans]
       },
       borderRadius: {
         lg: '0.75rem',

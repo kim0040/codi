@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { USER_ROLES } from '@/lib/rbac';
+import { USER_ROLES, isRoleAllowed } from '@/lib/rbac';
 
 interface WeekOption {
   id: string;
@@ -22,7 +22,7 @@ export function MaterialUploadForm({ classSlug, weeks }: Props) {
   const [status, setStatus] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
 
-  if (!session || ![USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN].includes(session.user.role) || weeks.length === 0) {
+  if (!isRoleAllowed(session?.user.role, [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN]) || weeks.length === 0) {
     return null;
   }
 

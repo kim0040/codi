@@ -12,6 +12,10 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.5",
+    "@mui/material": "^7.3.5",
     "@prisma/client": "^5.16.1",
     "@tiptap/extension-code-block-lowlight": "^3.10.7",
     "@tiptap/extension-link": "^3.10.7",
@@ -20,6 +24,7 @@
     "bcryptjs": "^3.0.3",
     "cloudinary": "^2.8.0",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "highlight.js": "^11.11.1",
     "isomorphic-dompurify": "^2.32.0",
     "lowlight": "3.3.0",

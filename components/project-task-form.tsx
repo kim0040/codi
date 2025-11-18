@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { PROJECT_COLUMNS } from '@/lib/constants';
+import { PROJECT_COLUMNS, type ProjectColumn } from '@/lib/constants';
 
 interface Props {
   projectSlug: string;
@@ -13,7 +13,7 @@ export function ProjectTaskForm({ projectSlug }: Props) {
   const [title, setTitle] = useState('');
   const [owner, setOwner] = useState('');
   const [dueDate, setDueDate] = useState('');
-  const [column, setColumn] = useState(PROJECT_COLUMNS.TODO);
+  const [column, setColumn] = useState<ProjectColumn>(PROJECT_COLUMNS.TODO);
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +49,7 @@ export function ProjectTaskForm({ projectSlug }: Props) {
       <input className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs dark:border-slate-700 dark:bg-slate-900" placeholder="작업명" value={title} onChange={(e) => setTitle(e.target.value)} />
       <input className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs dark:border-slate-700 dark:bg-slate-900" placeholder="담당자" value={owner} onChange={(e) => setOwner(e.target.value)} />
       <input className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs dark:border-slate-700 dark:bg-slate-900" type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
-      <select className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs dark:border-slate-700 dark:bg-slate-900" value={column} onChange={(e) => setColumn(e.target.value)}>
+      <select className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs dark:border-slate-700 dark:bg-slate-900" value={column} onChange={(e) => setColumn(e.target.value as ProjectColumn)}>
         {Object.values(PROJECT_COLUMNS).map((col) => (
           <option key={col} value={col}>
             {col}
