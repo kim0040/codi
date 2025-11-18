@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html class="" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Q&amp;A 게시판</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+    </style>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923", "surface-light": "#ffffff", "surface-dark": "#1c2127", "text-light-primary": "#111418", "text-dark-primary": "#ffffff", "text-light-secondary": "#6b7280", "text-dark-secondary": "#9dabb9", "border-light": "#e5e7eb", "border-dark": "#283039"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative mx-auto flex h-screen min-h-screen w-full max-w-md flex-col overflow-hidden">
+<!-- Top App Bar -->
+<header class="flex shrink-0 items-center justify-between border-b border-border-light bg-surface-light px-4 py-3 dark:border-border-dark dark:bg-surface-dark">
+<div class="flex h-10 w-10 items-center justify-center">
+<span class="material-symbols-outlined text-text-light-primary dark:text-text-dark-primary">arrow_back</span>
+</div>
+<h1 class="text-lg font-bold text-text-light-primary dark:text-text-dark-primary">Q&amp;A 게시판</h1>
+<div class="flex h-10 w-10 items-center justify-center">
+<span class="material-symbols-outlined text-text-light-primary dark:text-text-dark-primary">search</span>
+</div>
+</header>
+<!-- Main Content: Post List -->
+<main class="flex-1 overflow-y-auto">
+<div class="flex flex-col">
+<!-- List Item 1 (Secret Post) -->
+<div class="flex gap-4 border-b border-border-light bg-surface-light px-4 py-4 dark:border-border-dark dark:bg-surface-dark">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-background-light dark:bg-background-dark">
+<span class="material-symbols-outlined text-text-light-secondary dark:text-text-dark-secondary">lock</span>
+</div>
+<div class="flex flex-1 flex-col justify-center gap-1">
+<p class="font-semibold text-text-light-primary dark:text-text-dark-primary">비밀글입니다. 작성자와 관리자만 볼 수 있습니다.</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">댓글 5 | 조회수 128</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">김코딩 | 2024.05.21</p>
+</div>
+</div>
+<!-- List Item 2 (Public Post) -->
+<div class="flex gap-4 border-b border-border-light bg-surface-light px-4 py-4 dark:border-border-dark dark:bg-surface-dark">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-background-light dark:bg-background-dark">
+<span class="material-symbols-outlined text-text-light-secondary dark:text-text-dark-secondary">help_outline</span>
+</div>
+<div class="flex flex-1 flex-col justify-center gap-1">
+<p class="font-semibold text-text-light-primary dark:text-text-dark-primary">React에서 State 관리 질문입니다.</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">댓글 12 | 조회수 256</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">박해커 | 2024.05.20</p>
+</div>
+</div>
+<!-- List Item 3 (Public Post with new comment) -->
+<div class="flex gap-4 border-b border-border-light bg-primary/10 px-4 py-4 dark:border-border-dark dark:bg-primary/20">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-background-light dark:bg-background-dark">
+<span class="material-symbols-outlined text-text-light-secondary dark:text-text-dark-secondary">help_outline</span>
+</div>
+<div class="flex flex-1 flex-col justify-center gap-1">
+<div class="flex items-center gap-2">
+<p class="font-semibold text-text-light-primary dark:text-text-dark-primary">Python 알고리즘 문제 질문</p>
+<span class="flex h-5 items-center justify-center rounded-full bg-orange-500 px-2 text-xs font-semibold text-white">New</span>
+</div>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">댓글 8 | 조회수 98</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">이초보 | 2024.05.19</p>
+</div>
+</div>
+<!-- List Item 4 (Secret Post) -->
+<div class="flex gap-4 border-b border-border-light bg-surface-light px-4 py-4 dark:border-border-dark dark:bg-surface-dark">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-background-light dark:bg-background-dark">
+<span class="material-symbols-outlined text-text-light-secondary dark:text-text-dark-secondary">lock</span>
+</div>
+<div class="flex flex-1 flex-col justify-center gap-1">
+<p class="font-semibold text-text-light-primary dark:text-text-dark-primary">비밀글입니다. 작성자와 관리자만 볼 수 있습니다.</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">댓글 2 | 조회수 45</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">최개발 | 2024.05.18</p>
+</div>
+</div>
+<!-- List Item 5 (Public Post) -->
+<div class="flex gap-4 border-b border-border-light bg-surface-light px-4 py-4 dark:border-border-dark dark:bg-surface-dark">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-background-light dark:bg-background-dark">
+<span class="material-symbols-outlined text-text-light-secondary dark:text-text-dark-secondary">help_outline</span>
+</div>
+<div class="flex flex-1 flex-col justify-center gap-1">
+<p class="font-semibold text-text-light-primary dark:text-text-dark-primary">JavaScript 비동기 처리 관련 질문</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">댓글 21 | 조회수 312</p>
+<p class="text-sm text-text-light-secondary dark:text-text-dark-secondary">정고수 | 2024.05.17</p>
+</div>
+</div>
+</div>
+<!-- FAB (Floating Action Button) -->
+<div class="pointer-events-none fixed bottom-24 right-0 z-10 w-full max-w-md">
+<div class="flex justify-end p-4">
+<button class="pointer-events-auto flex h-14 w-14 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary text-white shadow-lg">
+<span class="material-symbols-outlined !text-3xl">add</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="shrink-0 border-t border-border-light bg-surface-light p-2 dark:border-border-dark dark:bg-surface-dark">
+<div class="flex justify-around">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-lg py-1 text-text-light-secondary dark:text-text-dark-secondary" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-xs font-medium">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-lg py-1 text-text-light-secondary dark:text-text-dark-secondary" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<p class="text-xs font-medium">Schedule</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-lg bg-primary/10 py-1 text-primary dark:bg-primary/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+<p class="text-xs font-semibold">Board</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-lg py-1 text-text-light-secondary dark:text-text-dark-secondary" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<p class="text-xs font-medium">Chat</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-lg py-1 text-text-light-secondary dark:text-text-dark-secondary" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-xs font-medium">My</p>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

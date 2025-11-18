@@ -1,9 +1,10 @@
 import { createHash } from 'crypto';
+import { hash } from 'bcryptjs';
 import { PrismaClient } from '@prisma/client';
+import { encryptText } from '../lib/encryption';
 
 const prisma = new PrismaClient();
-
-const hashValue = (input: string) => createHash('sha256').update(input).digest('hex');
+const hashApiKey = (value: string) => createHash('sha256').update(value).digest('hex');
 
 async function main() {
   await prisma.attendanceLog.deleteMany();
@@ -11,8 +12,11 @@ async function main() {
   await prisma.curriculumWeek.deleteMany();
   await prisma.class.deleteMany();
   await prisma.projectLog.deleteMany();
+  await prisma.projectMessage.deleteMany();
+  await prisma.projectFile.deleteMany();
   await prisma.projectMember.deleteMany();
   await prisma.project.deleteMany();
+  await prisma.communityComment.deleteMany();
   await prisma.communityPost.deleteMany();
   await prisma.notification.deleteMany();
   await prisma.announcement.deleteMany();
@@ -30,12 +34,20 @@ async function main() {
   await prisma.parentLink.deleteMany();
   await prisma.user.deleteMany();
 
+  const [adminPassword, teacherPassword, studentKimPassword, studentLeePassword, parentPassword] = await Promise.all([
+    hash('admin1234', 10),
+    hash('mentor1234', 10),
+    hash('student1234', 10),
+    hash('student5678', 10),
+    hash('parent1234', 10)
+  ]);
+
   const [admin, teacher, studentKim, studentLee, parentKim] = await Promise.all([
     prisma.user.create({
       data: {
         name: '김원장',
         email: 'ceo@codingmaker.kr',
-        password: hashValue('admin1234'),
+        password: adminPassword,
         userTag: 'kimwonjang#0001',
         role: 'SUPER_ADMIN'
       }
@@ -44,7 +56,7 @@ async function main() {
       data: {
         name: '정해린 멘토',
         email: 'mentor@codingmaker.kr',
-        password: hashValue('mentor1234'),
+        password: teacherPassword,
         userTag: 'mentorjh#0002',
         role: 'ADMIN'
       }
@@ -53,7 +65,7 @@ async function main() {
       data: {
         name: '김현민',
         email: 'student1@codingmaker.kr',
-        password: hashValue('student1234'),
+        password: studentKimPassword,
         userTag: 'kimhyunmin#0003',
         role: 'FULL_MEMBER'
       }
@@ -62,7 +74,7 @@ async function main() {
       data: {
         name: '이서아',
         email: 'student2@codingmaker.kr',
-        password: hashValue('student5678'),
+        password: studentLeePassword,
         userTag: 'leeseoa#0004',
         role: 'FULL_MEMBER'
       }
@@ -71,7 +83,7 @@ async function main() {
       data: {
         name: '김하린 학부모',
         email: 'parent@codingmaker.kr',
-        password: hashValue('parent1234'),
+        password: parentPassword,
         userTag: 'parentkarin#9001',
         role: 'PARENT'
       }
@@ -229,39 +241,76 @@ async function main() {
 
   await prisma.trendingTag.createMany({ data: [{ label: '#프로젝트허브' }, { label: '#키오스크' }, { label: '#출석오류' }, { label: '#자료공유' }] });
 
-  await prisma.communityPost.createMany({
-    data: [
-      {
+  const [guidePost, aiMaterialPost, kioskTroublePost] = await Promise.all([
+    prisma.communityPost.create({
+      data: {
         title: '프로젝트 허브 Cloudinary 사용 가이드',
-        content: '전용 폴더 구조와 만료 정책 안내',
+        content: '<p>전용 폴더 구조와 만료 정책 안내</p>',
         category: '프로젝트',
         authorName: '김민준',
         authorRole: '정회원',
-        commentCount: 12,
+        commentCount: 0,
         likeCount: 45
-      },
-      {
+      }
+    }),
+    prisma.communityPost.create({
+      data: {
         title: 'AI 트랙 2주차 강의 자료 공유',
-        content: 'PDF와 데모 링크 첨부',
+        content: '<p>PDF와 데모 링크 첨부</p>',
         category: 'LMS 팁',
         authorName: '정해린 멘토',
         authorRole: '관리자',
-        commentCount: 4,
+        commentCount: 0,
         likeCount: 18
-      },
-      {
+      }
+    }),
+    prisma.communityPost.create({
+      data: {
         title: '키오스크 출석 알림이 학부모에게 안 가요',
-        content: 'Webhook 설정 확인 요청',
+        content: '<p>Webhook 설정 확인 요청</p>',
         category: 'Q&A',
         authorName: '박도윤',
         authorRole: '정회원',
-        commentCount: 8,
+        commentCount: 0,
         likeCount: 20
+      }
+    })
+  ]);
+
+  await prisma.communityComment.createMany({
+    data: [
+      {
+        postId: guidePost.id,
+        authorName: '이서아',
+        authorRole: '정회원',
+        content: '<p>공유 감사합니다! 폴더 네이밍 규칙도 추가되면 좋겠어요.</p>'
+      },
+      {
+        postId: guidePost.id,
+        authorName: '정해린 멘토',
+        authorRole: '관리자',
+        content: '<p>업데이트했습니다. `team-slug/file-name` 패턴으로 통일할게요.</p>'
+      },
+      {
+        postId: aiMaterialPost.id,
+        authorName: '김현민',
+        authorRole: '정회원',
+        content: '<p>데모 Colab 링크가 만료됐습니다. 다시 열어주실 수 있을까요?</p>'
+      },
+      {
+        postId: kioskTroublePost.id,
+        authorName: '김하린 학부모',
+        authorRole: '학부모',
+        content: '<p>저도 동일 증상이 있습니다. 7/15 09:00 이후 알림이 안 왔어요.</p>'
       }
     ]
   });
 
-  await prisma.project.create({
+  await prisma.communityPost.update({ where: { id: guidePost.id }, data: { commentCount: 2 } });
+  await prisma.communityPost.update({ where: { id: aiMaterialPost.id }, data: { commentCount: 1 } });
+  await prisma.communityPost.update({ where: { id: kioskTroublePost.id }, data: { commentCount: 1 } });
+
+  const edgeProject = await prisma.project.create({
     data: {
       slug: 'edge-attendance',
       title: 'Edge 기반 출결 알림 시스템',
@@ -291,7 +340,7 @@ async function main() {
     }
   });
 
-  await prisma.project.create({
+  const parentPortalProject = await prisma.project.create({
     data: {
       slug: 'parent-portal',
       title: '부모 포털 리뉴얼',
@@ -312,6 +361,71 @@ async function main() {
       }
     }
   });
+
+  await prisma.projectFile.create({
+    data: {
+      projectId: edgeProject.id,
+      logicalName: 'attendance-worker.ts',
+      fileName: 'attendance-worker.ts',
+      publicId: 'demo/edge-attendance/attendance-worker_v1.ts',
+      fileUrl: 'https://raw.githubusercontent.com/vercel/examples/main/edge-functions/webhooks/functions/verify-request.ts',
+      version: 1,
+      language: 'typescript',
+      size: 2840,
+      changeSummary: 'Edge 함수 베이스 버전',
+      uploadedById: studentKim.id
+    }
+  });
+
+  await prisma.projectFile.create({
+    data: {
+      projectId: edgeProject.id,
+      logicalName: 'attendance-worker.ts',
+      fileName: 'attendance-worker.ts',
+      publicId: 'demo/edge-attendance/attendance-worker_v2.ts',
+      fileUrl: 'https://raw.githubusercontent.com/vercel/examples/main/edge-functions/api-with-vercel/src/pages/api/index.ts',
+      version: 2,
+      language: 'typescript',
+      size: 3270,
+      changeSummary: '출석 API rate-limit 보완',
+      uploadedById: studentLee.id
+    }
+  });
+
+  await prisma.projectFile.create({
+    data: {
+      projectId: parentPortalProject.id,
+      logicalName: 'notification-center.tsx',
+      fileName: 'notification-center.tsx',
+      publicId: 'demo/parent-portal/notification-center_v1.tsx',
+      fileUrl: 'https://raw.githubusercontent.com/vercel/examples/main/edge-functions/feature-flag/app/page.tsx',
+      version: 1,
+      language: 'tsx',
+      size: 4180,
+      changeSummary: '알림 센터 UI 초안',
+      uploadedById: teacher.id
+    }
+  });
+
+  const chatSamples = [
+    { author: studentKim, message: '출석 Webhook을 오전 8시에 한번 더 재시도하도록 Edge worker를 수정했습니다.' },
+    { author: studentLee, message: 'Socket 로그를 Cloudinary에 백업하는 스크립트를 추가로 짜볼게요.' },
+    { author: teacher, message: '이번 주 금요일에 데모 있으니, 전날에 알림 플로우 리허설 부탁해요.' }
+  ];
+
+  for (const sample of chatSamples) {
+    const encrypted = encryptText(sample.message);
+    await prisma.projectMessage.create({
+      data: {
+        projectId: edgeProject.id,
+        authorId: sample.author.id,
+        authorTag: sample.author.userTag,
+        encryptedContent: encrypted.ciphertext,
+        iv: encrypted.iv,
+        authTag: encrypted.authTag
+      }
+    });
+  }
 
   await prisma.announcement.createMany({
     data: [
@@ -353,7 +467,7 @@ async function main() {
   const kiosk = await prisma.kioskAccount.create({
     data: {
       name: '성수 캠퍼스 1층',
-      apiKeyHash: hashValue('kiosk-demo-key'),
+      apiKeyHash: hashApiKey('kiosk-demo-key'),
       location: '1층 로비'
     }
   });

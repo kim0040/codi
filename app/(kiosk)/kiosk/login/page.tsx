@@ -20,14 +20,14 @@ export default function KioskLoginPage() {
   };
 
   return (
-    <div className="flex min-h-[80vh] items-center justify-center bg-slate-900 text-white">
-      <div className="w-full max-w-3xl rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-2xl">
-        <p className="text-sm uppercase tracking-[0.3em] text-blue-200">Kiosk</p>
+    <div className="flex min-h-[80vh] items-center justify-center bg-background-light px-4 py-10 text-slate-900 transition-colors dark:bg-[#050a11] dark:text-white">
+      <div className="w-full max-w-3xl rounded-[32px] border border-slate-200 bg-white p-8 shadow-2xl transition-colors dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm uppercase tracking-[0.3em] text-primary">Kiosk</p>
         <h1 className="mt-2 text-3xl font-bold">출석 키오스크 로그인</h1>
-        <p className="text-sm text-blue-100">API Key는 관리자(T1)에게만 발급됩니다. 유출 금지!</p>
+        <p className="text-sm text-slate-500 dark:text-blue-100">API Key는 관리자(T1)에게만 발급됩니다. 유출 금지!</p>
         <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="apiKey" className="block text-sm font-semibold text-blue-100">
+            <label htmlFor="apiKey" className="block text-sm font-semibold text-slate-600 dark:text-blue-100">
               API Key 입력
             </label>
             <input
@@ -36,7 +36,7 @@ export default function KioskLoginPage() {
               type="password"
               value={apiKey}
               onChange={(event) => setApiKey(event.target.value)}
-              className="mt-2 w-full rounded-2xl border border-white/20 bg-black/30 px-4 py-3 text-white placeholder:text-white/50 focus:border-primary focus:ring-primary"
+              className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-primary focus:ring-primary dark:border-white/20 dark:bg-black/30 dark:text-white dark:placeholder:text-white/50"
               placeholder="cm-kiosk-xxxx"
             />
           </div>
@@ -44,8 +44,8 @@ export default function KioskLoginPage() {
             키오스크 진입
           </button>
         </form>
-        <p className="mt-4 text-xs text-blue-200">로그인 성공 시 localStorage에 저장되며 10분 무휴지 정책이 적용됩니다.</p>
-        {message ? <p className="mt-3 text-sm text-blue-100">{message}</p> : null}
+        <p className="mt-4 text-xs text-slate-500 dark:text-blue-200">로그인 성공 시 localStorage에 저장되며 10분 무휴지 정책이 적용됩니다.</p>
+        {message ? <p className="mt-3 text-sm text-primary">{message}</p> : null}
       </div>
     </div>
   );

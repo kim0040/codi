@@ -12,13 +12,22 @@ Next.js 14 App Router 기반으로 학원 홈페이지·LMS·커뮤니티·프�
 
 - **Next.js 14 (App Router)** + React 18
 - **TypeScript**, **Tailwind CSS**, **next-themes**, **lucide-react**
+- **Auth**: **NextAuth.js** (Credentials + Prisma Adapter, JWT 세션)
 - **Prisma + SQLite (개발)**: `prisma db push`로 스키마를 즉시 생성하고, 추후 MySQL/PlanetScale로 provider만 교체해 확장
 - **배포 대상**: Node.js 20 환경(로컬 맥북, Ubuntu 서버 모두 지원)
+
+## 실제 학원 정보 반영
+
+- **코딩메이커학원(전남 광양시 무등길 47, 중동 1549-9)** 실데이터를 마케팅 페이지/클래스 정보에 삽입했습니다. 대표 연락처 `061-745-3355`, 운영 시간(평일 14~19시 · 토 14~17시), 공식 웹/블로그/인스타 채널을 Hero·소개 섹션에 표시합니다.
+- **교육 과정 소개 카드**: 코딩종합·임베디드, 창작 메이커, 컴활2급 특강 등 실제 개설 과정을 홈페이지 Features, About 섹션, 클래스 목록에 반영했습니다. 수강 인원(5~9명), 수강료(1,000분 단위 150,000~170,000원, 컴활 특강 8회 180,000원)도 함께 노출합니다.
+- **후기/평가**: 강사진·시설 5.0, 커뮤니케이션 5.0, 커리큘럼 자율성 3.0 등 공공데이터 기반 리뷰 지표를 Review 섹션과 README에 기록했습니다.
+- **상담/신청 흐름**: 네이버 블로그 및 구글폼 상담 → LMS 알림/게시판 연동, 실습 재료비 별도 안내 등을 마케팅·클래스 상세 페이지에서 설명합니다.
 
 ## 폴더 구조
 
 ```
-.
+
+. 
 ├─ app/
 │  ├─ (marketing)/page.tsx               # 홈페이지
 │  ├─ (dashboard)/dashboard/...          # 관리자/학생/학부모 대시보드 + 레이아웃
@@ -58,6 +67,13 @@ Next.js 14 App Router 기반으로 학원 홈페이지·LMS·커뮤니티·프�
 - 샘플 데이터(`prisma/seed.ts`)는 템플릿 화면과 기획서 시나리오(정회원/학부모/관리자 역할, Git-Lite 프로젝트 현황, 키오스크 출석 로그 등)를 모두 반영합니다.
 - `/api/kiosk/check-in` 엔드포인트는 `apiKey`(SHA-256 해시 비교)와 `이름#태그`를 받아, 해당 학생의 요일별 수업을 자동으로 찾은 뒤 `AttendanceLog` 레코드를 생성합니다. `status` 값을 `CHECK_IN`/`CHECK_OUT`으로 전달할 수 있어 퇴실 처리도 가능합니다.
 - 키오스크 로그인/출석 UI는 지시서 5.5 항목을 따라 `/kiosk/login` → localStorage 저장 → `/kiosk/attendance`에서 입력 및 API 호출 흐름을 구현했습니다.
+- 커뮤니티/프로젝트/LMS CRUD API: `/api/community/posts`(GET/POST), `/api/projects/[slug]/members`(POST), `/api/projects/tasks/[taskId]`(PATCH/DELETE), `/api/classes/[slug]/materials`(POST)로 글 작성·멤버 초대·칸반 이동·커리큘럼 자료 첨부를 처리합니다. UI에서도 커뮤니티 글 작성 폼, 프로젝트 멤버 초대 폼, 칸반 컬럼 선택/삭제 버튼, 커리큘럼 첨부 자료 리스트·업로드 폼이 동작합니다.
+- 알림 시스템은 `/api/notifications`(GET/PATCH)와 `/api/notifications/[id]`(PATCH)을 통해 관리되며, 헤더 `NotificationBell`과 대시보드 `DashboardNotificationsPanel`이 동일 데이터를 공유합니다. 커뮤니티 글 생성, 프로젝트 초대, 칸반 작업 변경 시 자동으로 Notification이 생성됩니다.
+- Git-Lite 프로젝트 허브는 멤버 초대 + 작업 생성 폼을 제공하며, 칸반 보드에서 드래그 앤 드롭/선택 박스로 컬럼 이동과 삭제를 수행합니다.
+- 커뮤니티 게시판은 카테고리 필터, 검색, 페이지네이션 UI로 게시글을 탐색할 수 있고, 작성 폼은 `/api/community/posts`와 즉시 연동됩니다.
+- 클래스 상세 페이지는 Cloudinary 첨부 파일 미리보기/삭제 기능과 관리자 전용 업로드 폼을 포함하며, 학생/학부모 대시보드에는 출석 캘린더(월간 뷰)를 노출합니다.
+- 알림 API: `/api/notifications`(GET/READ)와 `/api/notifications/[id]`(PATCH)로 헤더 알림 벨과 연동됩니다. 커뮤니티 글·프로젝트 초대·칸반 삭제 시 자동으로 Notification 모델에 레코드가 쌓입니다.
+- Cloudinary 업로드 API: `/api/uploads/signature`에서 사전 서명을 발급받은 뒤, `MaterialUploadForm`이 Cloudinary → `/api/classes/[slug]/materials` 순으로 파일 URL을 연결합니다.
 
 ## 로컬(맥북) 테스트 방법
 
@@ -65,7 +81,7 @@ Next.js 14 App Router 기반으로 학원 홈페이지·LMS·커뮤니티·프�
    - Homebrew: `brew install node@20 && brew link node@20 --force`  
    - 또는 `nvm install 20 && nvm use 20`
 2. **저장소 루트로 이동**: `/Users/gimhyeonmin/WebstormProjects/codingmaker1`
-3. **환경 변수 복사**: `cp .env.example .env`
+3. **환경 변수 복사**: `cp .env.example .env` 후 `NEXTAUTH_SECRET`(랜덤 문자열)과 `NEXTAUTH_URL`을 실제 도메인으로 지정. Cloudinary를 활용할 경우 `CLOUDINARY_*`와 `NEXT_PUBLIC_CLOUDINARY_*` 값을 함께 입력합니다.
 4. **의존성 설치**: `npm install`
 5. **DB 초기화 & 시드**: `npm run db:push && npm run db:seed`
 6. **개발 서버 실행**: `npm run dev`
@@ -77,6 +93,23 @@ Next.js 14 App Router 기반으로 학원 홈페이지·LMS·커뮤니티·프�
 2. 샘플 키 `kiosk-demo-key` 입력 → 저장 → `/kiosk/attendance` 자동 이동.
 3. `김현민#0003` 등 시드된 `userTag`를 입력하고 `입실/퇴실` 버튼 클릭 → `/api/kiosk/check-in` 호출, `AttendanceLog`에 기록.
 4. 기록은 페이지 하단 "최근 기록" 카드와 관리자 대시보드 실시간 테이블에서 즉시 확인할 수 있습니다.
+
+### 일반 로그인/역할 테스트
+
+1. `http://localhost:3000/login`에서 NextAuth Credentials 로그인을 실행합니다.
+2. 시드 데이터로 생성된 역할별 계정
+   - 원장님: `ceo@codingmaker.kr` / `admin1234`
+   - 멘토: `mentor@codingmaker.kr` / `mentor1234`
+   - 학생: `student1@codingmaker.kr` / `student1234`
+   - 학부모: `parent@codingmaker.kr` / `parent1234`
+3. 로그인 후 역할에 따라 `/dashboard/admin`, `/dashboard/student`, `/dashboard/parent`로 자동 리디렉션되며, 사이드바/헤더 노출 항목도 역할별로 달라집니다.
+
+### Cloudinary 자료 업로드 흐름
+
+1. `.env`에 Cloudinary API 키/시크릿과 `NEXT_PUBLIC_` 변수를 모두 채웁니다.
+2. 관리자/원장 계정으로 로그인한 뒤 클래스 상세 페이지로 이동하면 `자료 업로드 (ADMIN)` 폼이 노출됩니다.
+3. 업로드 버튼을 누르면 `/api/uploads/signature`에서 서명을 발급 → Cloudinary Direct Upload → `/api/classes/[slug]/materials`에 링크가 기록됩니다.
+4. API는 `CurriculumWeek.files` JSON을 업데이트하므로 이후 UI에서 첨부 목록을 노출하거나 LMS에서 다운로드 링크를 사용할 수 있습니다.
 
 > 빌드 검증이 필요하면 `npm run build && npm start`로 프로덕션 모드를 확인하세요.
 
@@ -93,7 +126,7 @@ npm start  # 혹은 pm2 등 프로세스 매니저에 등록
 
 ## 환경 변수 / 백엔드 연동
 
-기본 `.env`는 SQLite 파일 경로(`DATABASE_URL="file:./prisma/dev.db"`)만 포함합니다. 운영 전환 시 PlanetScale/MySQL URL로 교체하고, NextAuth·Cloudinary 등 민감 정보를 추가하세요. Prisma 스키마는 provider만 MySQL로 바꾸면 그대로 재사용할 수 있습니다.
+기본 `.env`는 SQLite 파일 경로(`DATABASE_URL="file:./prisma/dev.db"`)만 포함합니다. 운영 전환 시 PlanetScale/MySQL URL로 교체하고, NextAuth·Cloudinary 등 민감 정보를 추가하세요. Git-Lite 채팅 암호화를 위해 `PROJECT_CHAT_SECRET`(32바이트 이상 난수)도 함께 지정하면 됩니다. Prisma 스키마는 provider만 MySQL로 바꾸면 그대로 재사용할 수 있습니다.
 
 ## 참고
 
@@ -108,13 +141,14 @@ npm start  # 혹은 pm2 등 프로세스 매니저에 등록
 - Prisma 스키마/시드: User·ParentLink·Class·커리큘럼·프로젝트·커뮤니티·알림·키오스크 출석 로직 반영
 - `/api/kiosk/check-in` API + 키오스크 로그인/출석 흐름 구축
 - README/원터치 설치 스크립트 정비
+- NextAuth Credentials 기반 인증, bcrypt 비밀번호 해싱, 역할별 대시보드/네비게이션 제어
+- 커뮤니티 글 작성(티프탭 코드 하이라이팅 지원)·프로젝트 칸반(드래그 앤 드롭/작업 생성)·Cloudinary 자료 업로드·알림 시스템·학생/학부모 출석 캘린더 등 Phase 2 핵심 기능의 UI·API 연동
+- Git-Lite 협업 고도화: Socket.IO + NextAuth 세션으로 암호화하는 프로젝트 채팅, 활동 로그 피드, Cloudinary 기반 파일 버전/삭제 API, 코드 미리보기 UI까지 연결
+- 커뮤니티 Phase 3 토대: Prisma `CommunityComment` 모델, Tiptap 댓글 렌더러, 실시간 댓글 수 집계
 
 ### 다음 작업(예상)
-1. **인증/인가**: NextAuth 도입, 회원가입/로그인, 역할(RBAC) 기반 페이지 접근 제어
-2. **권한별 UI 보완**: 헤더/대시보드/버튼에서 사용자 역할에 따라 노출 항목 제어, 액션 제한
-3. **API 확장**: 커뮤니티 글 작성, 프로젝트 멤버 초대·칸반 업데이트, LMS 자료 업로드 등 CRUD API 구현
-4. **알림 시스템**: Notification 트리거, 헤더 알림 벨, 실시간/읽음 처리 흐름
-5. **파일/Cloudinary 연동**: 커뮤니티·프로젝트의 파일 업로드, 코드 미리보기
-6. **테스트/보안**: Prisma seed → PlanetScale 전환, 유닛/e2e 테스트, kiosk apiKey 암호화 관리 강화
+1. **커뮤니티 Phase 3**: Tiptap 렌더링/댓글 고도화, 코드 뷰어, 검색/필터, 권한별 관리 기능을 구현합니다.
+2. **운영·법적 기능**: 개인정보처리방침, 명예의 전당, 통계 화면을 신설하고 Notification 트리거(파일, 채팅, LMS 일정)를 확장합니다.
+3. **보안·배포 강화**: PlanetScale(MySQL) 전환, kiosk API key 암호화, 유닛/E2E 테스트, 배포 자동화/모니터링을 준비합니다.
 
 > 위 TODO는 1차 구현이 완료된 상태를 기준으로 작성했습니다. 내일 작업 시 이 순서를 참고하시면 됩니다.

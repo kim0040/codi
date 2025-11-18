@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI 챗봇 개발 프로젝트 - 코딩메이커 아카데미 허브</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923", "text-light": "#1f2937", "text-dark": "#e5e7eb", "text-muted-light": "#6b7280", "text-muted-dark": "#9ca3af", "border-light": "#e5e7eb", "border-dark": "#374151", "surface-light": "#ffffff", "surface-dark": "#1f2937", "surface-muted-light": "#f3f4f6", "surface-muted-dark": "#2d3748"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-screen w-full flex-col max-w-md mx-auto">
+<!-- Top App Bar -->
+<div class="flex items-center bg-surface-light dark:bg-surface-dark p-4 shadow-sm z-20">
+<button class="flex items-center justify-center p-2 rounded-full text-text-light dark:text-text-dark hover:bg-surface-muted-light dark:hover:bg-surface-muted-dark">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold flex-1 text-center text-text-light dark:text-text-dark">AI 챗봇 개발 프로젝트</h1>
+<button class="flex items-center justify-center p-2 rounded-full text-text-light dark:text-text-dark hover:bg-surface-muted-light dark:hover:bg-surface-muted-dark">
+<span class="material-symbols-outlined text-2xl">more_vert</span>
+</button>
+</div>
+<!-- Tabs -->
+<div class="bg-surface-light dark:bg-surface-dark z-10 sticky top-0">
+<div class="flex border-b border-border-light dark:border-border-dark px-4">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 flex-1" href="#">
+<p class="text-sm font-bold">채팅</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-text-muted-light dark:text-text-muted-dark pb-3 pt-4 flex-1 hover:text-text-light dark:hover:text-text-dark" href="#">
+<p class="text-sm font-bold">파일</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-text-muted-light dark:text-text-muted-dark pb-3 pt-4 flex-1 hover:text-text-light dark:hover:text-text-dark" href="#">
+<p class="text-sm font-bold">로그</p>
+</a>
+</div>
+</div>
+<!-- Chat View -->
+<div class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark pb-4">
+<div class="flex flex-col gap-2 p-4">
+<!-- Meta Text -->
+<p class="text-text-muted-light dark:text-text-muted-dark text-xs font-normal text-center py-4">오늘</p>
+<!-- Message from other -->
+<div class="flex items-end gap-2.5">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 h-8 shrink-0" data-alt="User avatar for Kim Minjun" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAORvhLaRuitVkqkzIzKZJkz2-nJ5czHDa4lIprFIF7uB22O25NVq-ybhPnCh-iVgfww-o4cihv0U8-gmsk7sFxxpIf0resybRhGqZEzVkPQIGzwhcAIvJjIoWLREw8xMahIRofNVFnQWy1t3bC9xueNdL-XENQVwQ8XxDIkfAwMFg56Ahr-5Z52jEoJGyAJmg7xhzmwx2p1L0aHTNcEavyRMEOkRa0O6GQYQ2nlaGC9as9gyJPiGKkU81Oabw5YSFq_ECbLGT4o3Ds");'></div>
+<div class="flex flex-1 flex-col gap-1 items-start">
+<p class="text-text-muted-light dark:text-text-muted-dark text-xs font-normal max-w-[360px]">김민준</p>
+<div class="flex items-end gap-2">
+<p class="text-base font-normal leading-normal flex max-w-[260px] rounded-lg rounded-bl-none px-4 py-2.5 bg-surface-light dark:bg-surface-dark text-text-light dark:text-text-dark shadow-sm">
+                                안녕하세요! 프로젝트 기획서 초안 공유드립니다. 확인 부탁드려요.
+                            </p>
+<span class="text-xs text-text-muted-light dark:text-text-muted-dark">오후 2:30</span>
+</div>
+</div>
+</div>
+<!-- My Message -->
+<div class="flex items-end gap-2.5 justify-end mt-2">
+<div class="flex flex-1 flex-col gap-1 items-end">
+<p class="text-text-muted-light dark:text-text-muted-dark text-xs font-normal max-w-[360px] text-right">나</p>
+<div class="flex items-end gap-2">
+<span class="text-xs text-text-muted-light dark:text-text-muted-dark">오후 2:31</span>
+<p class="text-base font-normal leading-normal flex max-w-[260px] rounded-lg rounded-br-none px-4 py-2.5 bg-primary text-white">네, 감사합니다. 지금 바로 확인해볼게요!</p>
+</div>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 h-8 shrink-0" data-alt="My user avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAA2KMcrjjEJqt3j7K83LItYkNwEUS0Sbbsp8pIPLfxE51LLy19Tng_lLjHcZa5GtBzmAfzfrXYRLiF4jaE53JiFn_xko-ee6rlvD-5VAqbHvUGHm583K4eghPqIrx-Ebzossp_WTzt14Ctn6_O9BTGvY9cSEDYMcvSfn4HnWI-qPRjwXfVgQb6F7XnTg5l27THroo2QSl54p3wBfENk2pnGne0CsAfVmiK4EDTHRtuI-Kikjcczs1ajfiYg0qj7Sx1hPWnaV62zLVy");'></div>
+</div>
+<!-- Meta Text -->
+<p class="text-text-muted-light dark:text-text-muted-dark text-xs font-normal text-center py-4">홍길동님이 팀에 초대되었습니다.</p>
+<!-- Message from other -->
+<div class="flex items-end gap-2.5">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 h-8 shrink-0" data-alt="User avatar for Hong Gildong" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDi6LaqjJbP8zF3z-INjjugWP4lpPqM387Sn2G7E8TAWgKWcE10dsVK_n4knG7f60rj2Ejv7lJNmMQVc-PSWppw0gG3v5wlSLr-6aj0-_FRGRBZeTIXAarUk-NXQFu7jMMMatOyU-uCyS0U-G25oS5pBPvnThx0dDPL729yEuSYqQlZ9OYLuqHi2fRDQWy7rOVP21bW3jXJeNvAH7xFdqQyd8CkjRzWu3qdknqekjQSa6EfmZc_tfE76mGYfHMJBhNeGogK42IZYHhZ");'></div>
+<div class="flex flex-1 flex-col gap-1 items-start">
+<p class="text-text-muted-light dark:text-text-muted-dark text-xs font-normal max-w-[360px]">홍길동</p>
+<div class="flex items-end gap-2">
+<p class="text-base font-normal leading-normal flex max-w-[260px] rounded-lg rounded-bl-none px-4 py-2.5 bg-surface-light dark:bg-surface-dark text-text-light dark:text-text-dark shadow-sm">
+                                안녕하세요, 초대해주셔서 감사합니다! 잘 부탁드립니다.
+                            </p>
+<span class="text-xs text-text-muted-light dark:text-text-muted-dark">오후 2:35</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Message Input -->
+<div class="bg-surface-light dark:bg-surface-dark p-2 border-t border-border-light dark:border-border-dark">
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center p-2.5 rounded-full text-text-muted-light dark:text-text-muted-dark hover:bg-surface-muted-light dark:hover:bg-surface-muted-dark">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<input class="flex-1 bg-surface-muted-light dark:bg-surface-muted-dark border-none rounded-full py-2.5 px-4 focus:ring-2 focus:ring-primary focus:ring-opacity-50 text-text-light dark:text-text-dark placeholder-text-muted-light dark:placeholder-text-muted-dark" placeholder="메시지를 입력하세요" type="text"/>
+<button class="flex items-center justify-center p-2.5 rounded-full bg-primary text-white">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

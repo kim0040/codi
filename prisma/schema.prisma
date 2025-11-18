@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -20,9 +21,14 @@ model User {
   attendanceLogs   AttendanceLog[]
   projectMemberships ProjectMember[]
   projectLogs      ProjectLog[]
+  projectMessages  ProjectMessage[]
+  projectFiles     ProjectFile[]
   notifications    Notification[]
   parentLinkAsStudent ParentLink?           @relation("StudentToParent")
   parentLinkAsParent ParentLink?            @relation("ParentToStudent")
+  accounts         Account[]
+  sessions         Session[]
+  authenticators   Authenticator[]
 }
 
 model ParentLink {
@@ -116,6 +122,8 @@ model Project {
   members     ProjectMember[]
   logs        ProjectLog[]
   tasks       ProjectTask[]
+  messages    ProjectMessage[]
+  files       ProjectFile[]
 }
 
 model ProjectMember {
@@ -149,6 +157,41 @@ model ProjectTask {
   project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
 
+model ProjectMessage {
+  id               String   @id @default(cuid())
+  projectId        String
+  authorId         String?
+  authorTag        String
+  encryptedContent String
+  iv               String
+  authTag          String
+  createdAt        DateTime @default(now())
+  project          Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  author           User?    @relation(fields: [authorId], references: [id])
+
+  @@index([projectId, createdAt])
+}
+
+model ProjectFile {
+  id            String   @id @default(cuid())
+  projectId     String
+  logicalName   String
+  fileName      String
+  publicId      String?
+  fileUrl       String
+  version       Int      @default(1)
+  language      String?
+  size          Int?
+  changeSummary String?
+  uploadedById  String?
+  uploadedAt    DateTime @default(now())
+  project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  uploadedBy    User?    @relation(fields: [uploadedById], references: [id])
+
+  @@unique([projectId, logicalName, version])
+  @@index([projectId, logicalName])
+}
+
 model CommunityPost {
   id           String   @id @default(cuid())
   title        String
@@ -159,6 +202,17 @@ model CommunityPost {
   commentCount Int      @default(0)
   likeCount    Int      @default(0)
   createdAt    DateTime @default(now())
+  comments     CommunityComment[]
+}
+
+model CommunityComment {
+  id         String   @id @default(cuid())
+  postId     String
+  authorName String
+  authorRole String
+  content    String
+  createdAt  DateTime @default(now())
+  post       CommunityPost @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
 
 model Announcement {
@@ -261,4 +315,52 @@ model AuditLog {
 model KioskNotice {
   id   Int    @id @default(autoincrement())
   body String
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @map("refresh_token")
+  access_token      String? @map("access_token")
+  expires_at        Int?    @map("expires_at")
+  token_type        String? @map("token_type")
+  scope             String?
+  id_token          String? @map("id_token")
+  session_state     String? @map("session_state")
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Authenticator {
+  credentialID      String @id @default(cuid())
+  userId            String
+  providerAccountId String
+  credentialPublicKey String
+  counter           Int
+  credentialDevice  String
+  credentialBackedUp Boolean
+  transports        String?
+  user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerAccountId, credentialID])
 }

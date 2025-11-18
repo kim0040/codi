@@ -1,15 +1,23 @@
 import Link from 'next/link';
+import { getServerSession } from 'next-auth';
 import { ThemeToggle } from './theme-toggle';
+import { UserAuthMenu } from './user-auth-menu';
+import { NotificationBell } from './notification-bell';
+import { authOptions } from '@/lib/auth';
+import { getDashboardPath, ROLE_LABELS } from '@/lib/rbac';
 
-const navItems = [
-  { href: '/', label: '학원 소개' },
-  { href: '/classes', label: '클래스' },
-  { href: '/community', label: '커뮤니티' },
-  { href: '/projects', label: '프로젝트 협업' },
-  { href: '/dashboard/student', label: '대시보드' }
+const baseNav = [
+  { href: '/#about', label: '학원 소개' },
+  { href: '/#courses', label: '과정 안내' },
+  { href: '/#news', label: '소식/이벤트' },
+  { href: '/#contact', label: '문의하기' }
 ];
 
-export function SiteHeader() {
+export async function SiteHeader() {
+  const session = await getServerSession(authOptions);
+  const dashboardHref = getDashboardPath(session?.user.role);
+  const navItems = [...baseNav, { href: dashboardHref, label: '대시보드' }];
+
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/85 backdrop-blur-lg dark:border-slate-800 dark:bg-[#0f1923]/90">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -29,7 +37,19 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
+          <NotificationBell />
           <ThemeToggle />
+          <UserAuthMenu
+            user={
+              session
+                ? {
+                    name: session.user.name,
+                    roleLabel: ROLE_LABELS[session.user.role] ?? session.user.role,
+                    userTag: session.user.userTag
+                  }
+                : null
+            }
+          />
         </div>
       </div>
     </header>

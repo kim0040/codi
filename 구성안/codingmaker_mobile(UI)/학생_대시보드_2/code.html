@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>코딩메이커 아카데미 허브</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923", "card-light": "#ffffff", "card-dark": "#1c2127", "text-light": "#1f2937", "text-dark": "#e5e7eb", "text-muted-light": "#6b7280", "text-muted-dark": "#9ca3af", accent: "#f59e0b", "status-green": "#10b981", "status-red": "#ef4444"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+    /* Custom scrollbar for webkit browsers */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex w-full flex-col min-h-screen">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-10 flex items-center justify-between bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm p-4">
+<div class="flex items-center gap-3">
+<div class="size-10 shrink-0">
+<img class="size-full rounded-full object-cover" data-alt="User profile picture of Kim Coding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACLFNce-m1dojaheim1RWEwrSim7eOjYnFCLXES9VlSCmXf5WAXRShWJWSK0SL9_lMCBuSjwBRqx1TNlyQwxrgI47AjN2s6EMzmXjkkyDnhLAm1u5xIy8USakx4yp43D1YgnLlexK8Y2llJgoblPcCFoTmlHxRDykqIh8_rlUThJcyuzVaJex8EsYZcVptltJZx14asmjhI_g6emVfmbSBOeoBXlFXTCfBKJSTX5r6bVo6oLRyufG_VLVMnuOOv9Mgc3ajzqTjA-93"/>
+</div>
+<h2 class="text-lg font-bold">김코딩님, 안녕하세요!</h2>
+</div>
+<div class="flex items-center justify-end">
+<button class="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full text-text-light dark:text-text-dark hover:bg-black/5 dark:hover:bg-white/5">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 pb-24 px-4 space-y-6">
+<!-- Attendance Card -->
+<section>
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em] pb-3 pt-2">오늘의 출석</h3>
+<div class="flex flex-col items-stretch justify-start rounded-xl bg-card-light dark:bg-card-dark shadow-sm">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 p-4">
+<div class="flex items-center justify-between">
+<p class="text-lg font-bold text-status-red">출석 전</p>
+<span class="material-symbols-outlined text-3xl text-status-red">pending</span>
+</div>
+<div class="flex items-end justify-between gap-3">
+<div class="flex flex-col gap-1">
+<p class="text-base font-normal text-text-muted-light dark:text-text-muted-dark">2023년 10월 27일 금요일</p>
+<p class="text-sm font-normal text-text-muted-light dark:text-text-muted-dark">입실 QR 코드를 스캔하여 출석을 완료해주세요.</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-medium leading-normal">
+<span class="material-symbols-outlined text-lg">qr_code_scanner</span>
+<span class="truncate">입실하기</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- My Classes Section -->
+<section>
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em] pb-3 pt-2">내 클래스</h3>
+<div class="flex overflow-x-auto no-scrollbar -mx-4 px-4">
+<div class="flex items-stretch gap-3">
+<div class="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-64 bg-card-light dark:bg-card-dark p-3 shadow-sm">
+<div class="w-full bg-cover bg-center aspect-video rounded-lg flex flex-col" data-alt="A vibrant abstract gradient for the Python Basics class" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBxzxMmP00ByvnMCvsKpoc0Nk8gH7m0yTp-X5kBUHsujClr1BnvFHTRShjJ2k8-HunKw8nXFR_zqj2EFRsRbmcHHZl0oiqMow6Y38xbvCAvq6sczVc5z34mn2lJcNm_TkAZ67w3sFDN__g5eKwFlChxotVJTBZ5xjr4zz7BD7FoV0itOp2Mo-BBAPD5FOTTeVz2-F4BmKaH-RuRONGmy8qXYZUCOc3buq7abXTGp-mQt98e6stMdVufmAZHr0FeYo_UQUgiTxGnLxXF');"></div>
+<div>
+<p class="text-base font-bold">Python 기초</p>
+<p class="text-sm font-normal text-text-muted-light dark:text-text-muted-dark">담당: 박강사 / 다음 수업: 14:00</p>
+</div>
+</div>
+<div class="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-64 bg-card-light dark:bg-card-dark p-3 shadow-sm">
+<div class="w-full bg-cover bg-center aspect-video rounded-lg flex flex-col" data-alt="A modern, sleek image of a laptop with code for the Web Development class" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAn0Y-rj3YsizzKuHZpZYoUhWL3hoOv4OtBubEiOH4Gj7-AUARGU6LokKTRMev3yYP4BZM5fBZqwK4hxjlA7VUNeB5yk1jEibEam1PC2lCY2LEecVn6WDeyvMSRCf73CLOu4rZb_EK8te6WyVM6B3EWJ801oUAun4w8ba_pfb2QKi07ygftrWQxGrijX-STjL4klHz1fwNntWtbZC_gWnok_JPI9Ki4whTl-HZnfxDZQO81PRYOyUN47S2AY4M-jRGy5vRcPfJ1ks8s');"></div>
+<div>
+<p class="text-base font-bold">웹 개발 심화반</p>
+<p class="text-sm font-normal text-text-muted-light dark:text-text-muted-dark">담당: 이강사 / 다음 수업: 18:00</p>
+</div>
+</div>
+<div class="flex h-full flex-1 flex-col gap-3 rounded-lg min-w-64 bg-card-light dark:bg-card-dark p-3 shadow-sm">
+<div class="w-full bg-cover bg-center aspect-video rounded-lg flex flex-col" data-alt="An abstract representation of data structures for the Algorithm class" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCFHUoT4ED76UzSE4PHgpXei49yefIgo0xbNzt-EEJc8FXh9BXnIOD-C7W_ptPRDMwhYgaJrF_cP0lj23nHUj4ljUhhSzoaclm4zX6KWdoKVMatDykG2jC-I51Zb1eJDUDk-nDZcI459_bfwMMvQvpV2opHWxOK5pGKKPmVb2an0eKv9Pn0bLBzEj870IElW7BgS9__mBlOoJeAnMenPsbF3uVb5Dos3PLNzC9H9rg9QFnmYfVw3F_jLp-RVGC8a9bGwqW3EdNgC8Lq');"></div>
+<div>
+<p class="text-base font-bold">알고리즘 마스터</p>
+<p class="text-sm font-normal text-text-muted-light dark:text-text-muted-dark">담당: 최강사 / 다음 수업: 내일 10:00</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ongoing Projects Section -->
+<section>
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em] pb-3 pt-2">진행 중인 프로젝트</h3>
+<div class="space-y-3">
+<div class="rounded-xl bg-card-light dark:bg-card-dark p-4 shadow-sm">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-bold">아카데미 허브 앱 클론</p>
+<p class="text-sm text-accent font-medium">마감 D-7</p>
+</div>
+<div class="flex -space-x-2">
+<img class="inline-block size-7 rounded-full ring-2 ring-background-light dark:ring-background-dark object-cover" data-alt="Team member 1 profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA97wtOjYI0sSEZWzugaJvMpT8QOC0d23xHaeOAd5PCagglECsmLl14aqRfU6kcVPNqOCDq0N09zDtyMzNNSrxoUW_GmoCtAcVpS6FSnSt1rFIIwSJt-7SH2GoiBAa5xETU2uMjE_ug2_IymNbB6-pm8bsWjkjCy8LNT4difViscD2trlNPxIipwr9WIS-QCi7bs6aX0ldDD7nPWnQJXQgArBDBx2dWVlbt8a5_57DyCcca929yZx7utV-6JlVr-XVN-LN56nEU30Ul"/>
+<img class="inline-block size-7 rounded-full ring-2 ring-background-light dark:ring-background-dark object-cover" data-alt="Team member 2 profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlxbUwozjljLdyyMu23wqC4DLHYQksKJzC55b7sdsZ802oLJZkrG9dkygoG5iNMbWYUxG_EnWkXenRa4w3ErPzEjH45_QAsRR3H_T6r4EWGL05SzdQ3USoq9yXhhvyCKVtPXcZJ1vEhXqgDAAmyYs86FJgXa9kro2LeVsJL-8uAvJnN3kRYJ3UWfZRKS_xJWiCPivLEJm3s69Bi07ibXl2yyXiKxywVHrG-0JUocrS8DvXtDOXc733EDs3OYHZJOJTrKNU37i8ESyQ"/>
+<img class="inline-block size-7 rounded-full ring-2 ring-background-light dark:ring-background-dark object-cover" data-alt="Team member 3 profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlC9qJjJ4zz9IsWgr5EwQGcEbw2jVNZ8TnH2dP01c9LerfLkH0LD1UtINCSqtdS173GmDkMvGsZuEp090nltysSN6wlfrnzL-ocv4Zcoo-CZ2kocoQlBf5GcLl0PRCQsvBmdg-ovi6c3BFLZLJ3HvWeOjpEp8o80OuQi9XNnRKPdMrM68GNLRJH_Um1TbZAhIzy7Q15Mc8DyQVA-J7rjIxBwVNp1e8G1g2t7G6k_AXkQ8bEQzLNtocidaSDicCD6hiEp1jr3WfsK4-"/>
+</div>
+</div>
+<div class="mt-3">
+<div class="flex justify-between text-sm text-text-muted-light dark:text-text-muted-dark mb-1">
+<span>진행률</span>
+<span>65%</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Announcements Section -->
+<section>
+<div class="flex items-center justify-between pb-3 pt-2">
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em]">주요 알림</h3>
+<a class="text-sm font-medium text-primary" href="#">더보기</a>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-4 rounded-xl bg-card-light dark:bg-card-dark p-3 shadow-sm">
+<div class="flex-shrink-0 flex items-center justify-center size-10 bg-primary/20 text-primary rounded-full">
+<span class="material-symbols-outlined">task_alt</span>
+</div>
+<div>
+<p class="font-medium">새로운 과제가 등록되었습니다.</p>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark">웹 개발 심화반 / 10월 27일</p>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-xl bg-card-light dark:bg-card-dark p-3 shadow-sm">
+<div class="flex-shrink-0 flex items-center justify-center size-10 bg-accent/20 text-accent rounded-full">
+<span class="material-symbols-outlined">campaign</span>
+</div>
+<div>
+<p class="font-medium">내일 수업은 휴강입니다.</p>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark">전체 공지 / 10월 26일</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-10 bg-card-light dark:bg-card-dark border-t border-gray-200 dark:border-gray-700">
+<div class="flex h-16 items-center justify-around">
+<a class="flex flex-col items-center justify-center w-full gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-xs font-medium">홈</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full gap-1 text-text-muted-light dark:text-text-muted-dark" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-xs">클래스</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full gap-1 text-text-muted-light dark:text-text-muted-dark" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-xs">채팅</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full gap-1 text-text-muted-light dark:text-text-muted-dark" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="text-xs">프로젝트</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full gap-1 text-text-muted-light dark:text-text-muted-dark" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-xs">내 정보</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

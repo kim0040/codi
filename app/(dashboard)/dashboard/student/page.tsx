@@ -1,5 +1,9 @@
-import { AUDIENCES } from '@/lib/constants';
+import { requireRole } from '@/lib/auth-helpers';
+import { DASHBOARD_ACCESS } from '@/lib/rbac';
 import { prisma } from '@/lib/prisma';
+import { DashboardNotificationsPanel } from '@/components/dashboard-notifications-panel';
+import { AttendanceCalendar } from '@/components/attendance-calendar';
+import { buildMonthlyCalendar } from '@/lib/attendance';
 
 const formatDateTime = (value: Date) =>
   new Intl.DateTimeFormat('ko', {
@@ -10,13 +14,20 @@ const formatDateTime = (value: Date) =>
   }).format(value);
 
 export default async function StudentDashboardPage() {
-  const [progressItems, assignments, notifications, resources, project] = await Promise.all([
+  const session = await requireRole(DASHBOARD_ACCESS.STUDENT, '/dashboard/student');
+
+  const [progressItems, assignments, resources, project, attendanceLogs] = await Promise.all([
     prisma.studentProgress.findMany({ include: { class: true }, orderBy: { studentName: 'asc' } }),
     prisma.assignment.findMany({ orderBy: { dueAt: 'asc' } }),
-    prisma.notification.findMany({ where: { audience: AUDIENCES.STUDENT }, orderBy: { createdAt: 'desc' } }),
     prisma.curriculumWeek.findMany({ include: { class: true }, orderBy: { openDate: 'desc' }, take: 3 }),
-    prisma.project.findFirst({ orderBy: { progress: 'desc' } })
+    prisma.project.findFirst({ orderBy: { progress: 'desc' } }),
+    prisma.attendanceLog.findMany({
+      where: { userId: session.user.id },
+      orderBy: { checkInTime: 'desc' },
+      take: 60
+    })
   ]);
+  const calendarDays = buildMonthlyCalendar(attendanceLogs);
 
   return (
     <div className="space-y-8">
@@ -25,6 +36,7 @@ export default async function StudentDashboardPage() {
         <h1 className="mt-2 text-3xl font-black text-slate-900 dark:text-white">정회원 대시보드</h1>
         <p className="text-sm text-slate-500 dark:text-slate-300">나의 클래스, 과제, 협업 소식을 한곳에서 확인하세요.</p>
       </header>
+      <AttendanceCalendar title="이번 달 출석 캘린더" days={calendarDays} />
 
       <section className="grid gap-6 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
@@ -83,18 +95,7 @@ export default async function StudentDashboardPage() {
             </div>
           </div>
         </div>
-        <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">알림센터</h2>
-          <div className="space-y-3">
-            {notifications.map((noti) => (
-              <div key={noti.id} className="rounded-2xl border border-slate-100/70 bg-slate-50/60 p-4 dark:border-slate-800 dark:bg-white/5">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">{noti.category}</p>
-                <p className="text-sm font-semibold text-slate-900 dark:text-white">{noti.title}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-300">{formatDateTime(noti.createdAt)}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <DashboardNotificationsPanel />
       </section>
     </div>
   );

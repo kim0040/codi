@@ -40,7 +40,10 @@ export const AUDIENCES = {
 export const NOTIFICATION_TYPES = {
   NOTICE: 'NOTICE',
   ASSIGNMENT: 'ASSIGNMENT',
-  MESSAGE: 'MESSAGE'
+  MESSAGE: 'MESSAGE',
+  PROJECT: 'PROJECT',
+  COMMUNITY: 'COMMUNITY',
+  LMS: 'LMS'
 } as const;
 
 export type MetricType = (typeof METRIC_TYPES)[keyof typeof METRIC_TYPES];

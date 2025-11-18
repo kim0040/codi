@@ -1,5 +1,8 @@
 import { ATTENDANCE_STATUSES, AUDIENCES, METRIC_TYPES } from '@/lib/constants';
+import { requireRole } from '@/lib/auth-helpers';
+import { DASHBOARD_ACCESS } from '@/lib/rbac';
 import { prisma } from '@/lib/prisma';
+import { DashboardNotificationsPanel } from '@/components/dashboard-notifications-panel';
 
 const statusLabel: Record<string, string> = {
   [ATTENDANCE_STATUSES.CHECK_IN]: '입실',
@@ -16,6 +19,8 @@ const formatDateTime = (value: Date) =>
   }).format(value);
 
 export default async function AdminDashboardPage() {
+  await requireRole(DASHBOARD_ACCESS.ADMIN, '/dashboard/admin');
+
   const [cards, attendance, notices, auditLogs] = await Promise.all([
     prisma.metric.findMany({ where: { type: METRIC_TYPES.ADMIN } }),
     prisma.attendanceLog.findMany({ include: { user: true, class: true }, orderBy: { checkInTime: 'desc' }, take: 6 }),
@@ -87,7 +92,7 @@ export default async function AdminDashboardPage() {
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-3">
         <div className="rounded-2xl border border-slate-100 bg-white/80 p-6 dark:border-slate-800 dark:bg-white/5">
           <h3 className="text-lg font-semibold text-slate-900 dark:text-white">빠른 관리</h3>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -111,6 +116,7 @@ export default async function AdminDashboardPage() {
             ))}
           </ul>
         </div>
+        <DashboardNotificationsPanel title="최근 알림" />
       </div>
     </div>
   );

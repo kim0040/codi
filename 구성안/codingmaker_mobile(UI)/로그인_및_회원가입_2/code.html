@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>코딩메이커 아카데미 허브 - 로그인</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#359EFF", "background-light": "#f5f7f8", "background-dark": "#0f1923"}, fontFamily: {display: "Lexend"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center bg-background-light dark:bg-background-dark p-4">
+<div class="w-full max-w-md space-y-8">
+<!-- Logo Section -->
+<div class="flex justify-center">
+<div class="w-48 h-12 bg-center bg-no-repeat bg-contain" data-alt="Coding Maker Academy Hub Logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCGdXk1A1LypnKi6SmkizvOwToGioGQ_yAxaIdOQPZ25MhhhNLi8_fMI30OG3PouY3xTyKW7aZEtP5a_SB-DoByEytLzmWpnshWqnjfFOKPzWdKf-2y8UN4hWfLXGIhAQlJ3zunvhQQinjDLXrXqe1Z4TR8yuzvFXndB9cNmZyCW0WF3ufcJR1VCDTYjAyEsmo9dLRKRoVDB6ZX_lNOyr2-9PtRyW5lfUgEyeteRZaqeEHSd83tX59tsGXCqCqhHdneLgjJpCrh6Ubv");'></div>
+</div>
+<!-- Segmented Buttons for Login/Sign Up -->
+<div class="px-4">
+<div class="flex h-12 flex-1 items-center justify-center rounded-xl bg-gray-200 dark:bg-black/20 p-1.5">
+<label class="flex h-full flex-1 cursor-pointer items-center justify-center overflow-hidden rounded-lg px-2 text-sm font-semibold leading-normal text-gray-500 dark:text-gray-400 has-[:checked]:bg-white has-[:checked]:text-gray-900 has-[:checked]:shadow-sm dark:has-[:checked]:bg-gray-700 dark:has-[:checked]:text-white">
+<span class="truncate">로그인</span>
+<input checked="" class="invisible w-0" name="auth-tab" type="radio" value="로그인"/>
+</label>
+<label class="flex h-full flex-1 cursor-pointer items-center justify-center overflow-hidden rounded-lg px-2 text-sm font-semibold leading-normal text-gray-500 dark:text-gray-400 has-[:checked]:bg-white has-[:checked]:text-gray-900 has-[:checked]:shadow-sm dark:has-[:checked]:bg-gray-700 dark:has-[:checked]:text-white">
+<span class="truncate">회원가입</span>
+<input class="invisible w-0" name="auth-tab" type="radio" value="회원가입"/>
+</label>
+</div>
+</div>
+<!-- Login Form -->
+<div class="space-y-6 px-4">
+<!-- Email Field -->
+<label class="flex flex-col flex-1">
+<p class="text-gray-800 dark:text-white text-sm font-medium leading-normal pb-2">이메일 주소</p>
+<div class="flex w-full flex-1 items-stretch rounded-lg">
+<div class="text-gray-400 dark:text-gray-500 flex border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-xl">mail</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-800 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 h-12 placeholder:text-gray-400 dark:placeholder:text-gray-500 p-3 rounded-l-none border-l-0 text-base font-normal leading-normal" placeholder="example@email.com" type="email" value=""/>
+</div>
+</label>
+<!-- Password Field -->
+<label class="flex flex-col flex-1">
+<p class="text-gray-800 dark:text-white text-sm font-medium leading-normal pb-2">비밀번호</p>
+<div class="flex w-full flex-1 items-stretch rounded-lg">
+<div class="text-gray-400 dark:text-gray-500 flex border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-xl">lock</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-800 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 h-12 placeholder:text-gray-400 dark:placeholder:text-gray-500 p-3 rounded-l-none border-l-0 text-base font-normal leading-normal" placeholder="비밀번호를 입력하세요" type="password" value=""/>
+<button aria-label="비밀번호 보기" class="text-gray-400 dark:text-gray-500 flex border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 items-center justify-center pr-4 rounded-r-lg border-l-0">
+<span class="material-symbols-outlined text-xl">visibility_off</span>
+</button>
+</div>
+</label>
+<!-- Forgot Password Link -->
+<div class="text-center">
+<a class="text-sm font-medium text-primary hover:underline" href="#">아이디/비밀번호를 잊으셨나요?</a>
+</div>
+<!-- Login Button -->
+<button class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-wide shadow-lg shadow-primary/30 hover:bg-primary/90 transition-colors">
+<span class="truncate">로그인</span>
+</button>
+</div>
+<!-- Divider and Social Login -->
+<div class="space-y-6 px-4">
+<div class="relative flex items-center">
+<div class="flex-grow border-t border-gray-300 dark:border-gray-700"></div>
+<span class="mx-4 flex-shrink text-sm text-gray-500 dark:text-gray-400">소셜 계정으로 간편하게 시작하기</span>
+<div class="flex-grow border-t border-gray-300 dark:border-gray-700"></div>
+</div>
+<div class="flex items-center justify-center gap-6">
+<!-- Kakao Button -->
+<button aria-label="Kakao로 로그인" class="flex h-14 w-14 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-[#FEE500]">
+<div class="h-6 w-6 bg-center bg-no-repeat bg-contain" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEaXYmb5s-VggAVqVNvT2fWk6GF2iSJ2LixtWa5uKTxWgA__5ttdi_ubysriKlYUlWVovUiFgZIqO-3CVGPoJhJNlqJ40W3Od1VOoVTmrcZ6WmkOMz0-mmZOYkPjAItoaCxBoFvNH1JAmm-OQPmTXHXdnRKtjkx4cEd81DXG2Xo6ThbrdYustBOgHOIF1NbhmdPrw_IxlcPdurURtaHhPhjFkAuRCtVf1YFwATaTGwK1TEa2gdtABNLw5dGAE3ONQpyHWCQFRR7w5a");'></div>
+</button>
+<!-- Google Button -->
+<button aria-label="Google로 로그인" class="flex h-14 w-14 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-white border border-gray-200 dark:border-gray-700 dark:bg-gray-800">
+<div class="h-6 w-6 bg-center bg-no-repeat bg-contain" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEaXYmb5s-VggAVqVNvT2fWk6GF2iSJ2LixtWa5uKTxWgA__5ttdi_ubysriKlYUlWVovUiFgZIqO-3CVGPoJhJNlqJ40W3Od1VOoVTmrcZ6WmkOMz0-mmZOYkPjAItoaCxBoFvNH1JAmm-OQPmTXHXdnRKtjkx4cEd81DXG2Xo6ThbrdYustBOgHOIF1NbhmdPrw_IxlcPdurURtaHhPhjFkAuRCtVf1YFwATaTGwK1TEa2gdtABNLw5dGAE3ONQpyHWCQFRR7w5a");'></div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

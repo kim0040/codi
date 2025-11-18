@@ -10,7 +10,9 @@ export default async function ClassesPage() {
         <header className="space-y-3 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary">Classes</p>
           <h1 className="text-3xl font-black text-slate-900 dark:text-white">클래스 & 커리큘럼</h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300">주차별 공개 일정과 권한 체계를 한 눈에</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300">
+            코딩메이커학원(광양 중동)은 5~9명의 소수 정예로 C언어·임베디드, 창작 메이커, 컴활 특강을 운영합니다.
+          </p>
         </header>
         <div className="overflow-hidden rounded-2xl border border-slate-100 dark:border-slate-800">
           <table className="min-w-full divide-y divide-slate-100 text-sm dark:divide-slate-800">
@@ -42,6 +44,21 @@ export default async function ClassesPage() {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="grid gap-4 rounded-2xl border border-slate-100 bg-slate-50/70 p-6 text-sm text-slate-600 dark:border-slate-800 dark:bg-white/5 dark:text-slate-300">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary">수강 안내</p>
+            <p className="mt-2 text-base font-semibold text-slate-900 dark:text-white">장기 과정 위주 · 주당 1,000분 단위</p>
+            <p className="text-sm">코딩종합 150,000원 / 컴퓨터그래픽스 170,000원 / 하드코딩 170,000원(각 1,000분 기준) · 컴활2급 실기 8회 180,000원.</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary">상담 채널</p>
+            <p>네이버 블로그 · 공식 홈페이지 · 구글폼을 통해 학부모/직장인 맞춤 상담을 신청할 수 있습니다.</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary">실습 비용</p>
+            <p>3D 프린터, 전자키트 등 실습 재료비는 과정별로 별도 청구됩니다.</p>
+          </div>
         </div>
       </div>
     </div>
